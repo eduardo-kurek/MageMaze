@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://ddlm2ehewsntt"]
 
-[ext_resource type="Script" uid="uid://cerx2ek075obs" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="Texture2D" uid="uid://cvb4xx7o3vubo" path="res://player/player.png" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://dtgfeufnl26my" path="res://entities/player/PlayerBrain.gd" id="1_abrql"]
+[ext_resource type="Texture2D" uid="uid://cvb4xx7o3vubo" path="res://entities/player/player.png" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://bhmcbky8ta7q5" path="res://entities/behaviours/walk/LinearWalkBehaviour.gd" id="3_sglur"]
+[ext_resource type="Script" uid="uid://chnkjubpsjo6p" path="res://entities/behaviours/walk/DelayWalkBehaviour.gd" id="4_bls4j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
 
@@ -56,8 +58,9 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1005058334]
-script = ExtResource("1_oul6g")
+[node name="Player" type="CharacterBody2D" unique_id=1005058334 node_paths=PackedStringArray("walk_behaviour")]
+script = ExtResource("1_abrql")
+walk_behaviour = NodePath("DelayWalkBehaviour")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2088231789]
 shape = SubResource("RectangleShape2D_rkbax")
@@ -69,3 +72,12 @@ sprite_frames = SubResource("SpriteFrames_rkbax")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.5211623
+
+[node name="LinearWalkBehaviour" type="Node" parent="." unique_id=1313081256]
+script = ExtResource("3_sglur")
+metadata/_custom_type_script = "uid://bhmcbky8ta7q5"
+
+[node name="DelayWalkBehaviour" type="Node" parent="." unique_id=1110574462]
+script = ExtResource("4_bls4j")
+acceleration = 400.0
+metadata/_custom_type_script = "uid://chnkjubpsjo6p"
