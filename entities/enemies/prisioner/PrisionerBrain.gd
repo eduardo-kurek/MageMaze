@@ -1,10 +1,10 @@
 class_name PrisionerBrain
-extends Brain
+extends EnemyBrain
 
 func think(_delta: float) -> void:
-	var dir := Input.get_vector(
-		"move_left", "move_right", 
-		"move_up", "move_down"
-	)
+	if not is_instance_valid(player):
+		return
+
+	var dir := global_position.direction_to(player.global_position)
 	walk_behaviour.walk(dir)
  

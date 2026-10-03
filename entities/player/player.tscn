@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dtgfeufnl26my" path="res://entities/player/PlayerBrain.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://cvb4xx7o3vubo" path="res://entities/player/player.png" id="2_rkbax"]
-[ext_resource type="Script" uid="uid://bhmcbky8ta7q5" path="res://entities/behaviours/walk/LinearWalkBehaviour.gd" id="3_sglur"]
 [ext_resource type="Script" uid="uid://chnkjubpsjo6p" path="res://entities/behaviours/walk/DelayWalkBehaviour.gd" id="4_bls4j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
@@ -58,7 +57,7 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=1005058334 node_paths=PackedStringArray("walk_behaviour")]
+[node name="Player" type="CharacterBody2D" unique_id=1005058334 node_paths=PackedStringArray("walk_behaviour") groups=["enemy_target"]]
 script = ExtResource("1_abrql")
 walk_behaviour = NodePath("DelayWalkBehaviour")
 
@@ -73,11 +72,7 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.5211623
 
-[node name="LinearWalkBehaviour" type="Node" parent="." unique_id=1313081256]
-script = ExtResource("3_sglur")
-metadata/_custom_type_script = "uid://bhmcbky8ta7q5"
-
 [node name="DelayWalkBehaviour" type="Node" parent="." unique_id=1110574462]
 script = ExtResource("4_bls4j")
-acceleration = 400.0
+acceleration = 1100.0
 metadata/_custom_type_script = "uid://chnkjubpsjo6p"
