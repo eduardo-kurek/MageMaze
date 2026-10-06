@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://bv8pxj5jy0g7o"]
 
-[ext_resource type="Script" uid="uid://up1v7843yleg" path="res://entities/enemies/prisioner/PrisionerBrain.gd" id="1_bl8vm"]
-[ext_resource type="Script" uid="uid://chnkjubpsjo6p" path="res://entities/behaviours/walk/DelayWalkBehaviour.gd" id="2_j6gqp"]
+[ext_resource type="Script" uid="uid://bekfbgafbalfp" path="res://entities/enemies/prisioner/Prisioner.gd" id="1_bl8vm"]
+[ext_resource type="Script" uid="uid://k3xt0jws2vle" path="res://entities/behaviours/walk/ChaseWalkBehaviour.gd" id="2_chase"]
+[ext_resource type="Script" uid="uid://bsvp3x3jgd0fi" path="res://entities/behaviours/walk/strategies/WalkStrategy.gd" id="2_j6gqp"]
 [ext_resource type="Texture2D" uid="uid://cvb4xx7o3vubo" path="res://entities/player/player.png" id="2_xlfdw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlf01"]
 
 [node name="Prisioner" type="CharacterBody2D" unique_id=1130226890 node_paths=PackedStringArray("walk_behaviour")]
 script = ExtResource("1_bl8vm")
-walk_behaviour = NodePath("DelayWalkBehaviour")
+walk_behaviour = NodePath("ChaseWalkBehaviour")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=56049797]
 shape = SubResource("RectangleShape2D_mlf01")
@@ -18,7 +19,11 @@ position = Vector2(8.940697e-07, 3.5762787e-07)
 scale = Vector2(0.08928572, 0.6060606)
 texture = ExtResource("2_xlfdw")
 
-[node name="DelayWalkBehaviour" type="Node" parent="." unique_id=1361064776]
+[node name="ChaseWalkBehaviour" type="Node" parent="." unique_id=1361064776 node_paths=PackedStringArray("strategy")]
+script = ExtResource("2_chase")
+strategy = NodePath("WalkStrategy")
+
+[node name="WalkStrategy" type="Node" parent="ChaseWalkBehaviour" unique_id=1957191035]
 script = ExtResource("2_j6gqp")
+speed = 50.0
 acceleration = 400.0
-metadata/_custom_type_script = "uid://chnkjubpsjo6p"
