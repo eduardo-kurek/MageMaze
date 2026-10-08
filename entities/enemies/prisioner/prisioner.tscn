@@ -8,6 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlf01"]
 
 [node name="Prisioner" type="CharacterBody2D" unique_id=1130226890 node_paths=PackedStringArray("walk_behaviour")]
+motion_mode = 1
 script = ExtResource("1_bl8vm")
 walk_behaviour = NodePath("ChaseWalkBehaviour")
 
@@ -25,5 +26,5 @@ strategy = NodePath("WalkStrategy")
 
 [node name="WalkStrategy" type="Node" parent="ChaseWalkBehaviour" unique_id=1957191035]
 script = ExtResource("2_j6gqp")
-speed = 50.0
+speed = 10.0
 acceleration = 400.0

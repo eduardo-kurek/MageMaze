@@ -59,6 +59,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1005058334 node_paths=PackedStringArray("walk_behaviour") groups=["enemy_target"]]
+motion_mode = 1
 script = ExtResource("1_abrql")
 walk_behaviour = NodePath("InputWalkBehaviour")
 
