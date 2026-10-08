@@ -1,5 +1,5 @@
 class_name BulletSpawner
-extends RefCounted
+extends Node
 
 var _spawner_container: Node
 

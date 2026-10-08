@@ -1,10 +1,7 @@
 class_name ShotBehaviour
 extends IShot
 
-var _next: IShot
-
-func _init(next: IShot) -> void:
-	_next = next
+@export var next: IShot
 
 func fire(ctx: ShotContext) -> void:
-	_next.fire(ctx)
+	next.fire(ctx)

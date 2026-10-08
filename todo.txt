@@ -1,0 +1,1 @@
+- Fazer o BulletSpawner ser global, dessa forma os inimigos não precisam gerenciar isso

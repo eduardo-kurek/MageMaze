@@ -1,28 +1,18 @@
 class_name Weapon
-extends RefCounted
+extends Resource
 
-var _pattern: IShot
-var _bullet: BulletDef
-var _aim: Callable
-var _interval: float
-var _cooldown: float = 0.0
+@export var pattern: IShot
+@export var bullet: BulletDef
+#@export var aim: Callable
+@export var interval: float
 
-func _init(
-	pattern: IShot,
-	bullet: BulletDef,
-	shots_per_second: float,
-	aim: Callable,
-) -> void:
-	_pattern = pattern
-	_bullet = bullet
-	_interval = 1.0 / shots_per_second
-	_aim = aim
-	
-func tick(delta: float, origin: Vector2, wants_to_fire: bool) -> void:
-	_cooldown = maxf(0.0, _cooldown - delta)
-	if not wants_to_fire or _cooldown > 0.0:
+var cooldown: float = 0.0
+
+func tick(delta: float, origin: Vector2, spawner: BulletSpawner, wants_to_fire: bool) -> void:
+	cooldown = maxf(0.0, cooldown - delta)
+	if not wants_to_fire or cooldown > 0.0:
 		return
 
-	_cooldown = _interval
-	var direction: Vector2 = _aim.call(origin)
-	_pattern.fire(ShotContext.new(origin, direction, _bullet))
+	cooldown = interval
+	var direction: Vector2 = Vector2.DOWN
+	pattern.fire(ShotContext.new(origin, direction, bullet, spawner))

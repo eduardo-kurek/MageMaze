@@ -4,21 +4,18 @@ extends CharacterBody2D
 @export var target: Node2D
 @export var shots_per_second: float = 2.0
 @export var walk_behaviour: WalkBehaviour
+@export var weapon: Weapon
 
-var _weapon: Weapon
+var _spawner: BulletSpawner
 
 func _ready() -> void:
-	var spawner := BulletSpawner.new(get_parent())
-	var pattern: IShot = MirrorShot.new(Shot.new(spawner))
-	var bullet := BulletDef.new()
-	
-	_weapon = Weapon.new(pattern, bullet, shots_per_second, _get_aim)
+	_spawner = BulletSpawner.new(get_parent())
 
 func _physics_process(delta: float) -> void:
 	if walk_behaviour:
 		walk_behaviour.walk()
 	
-	_weapon.tick(delta, global_position, true)
+	weapon.tick(delta, global_position, _spawner, true)
 
 func _get_aim(origin: Vector2) -> Vector2:
 	if target:

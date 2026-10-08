@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BulletDef" format=3 uid="uid://b85k4yngcy4os"]
+
+[ext_resource type="Script" uid="uid://b21hi32dggour" path="res://entities/behaviours/shoot/BulletDef.gd" id="1_w1547"]
+
+[resource]
+script = ExtResource("1_w1547")
+metadata/_custom_type_script = "uid://b21hi32dggour"
