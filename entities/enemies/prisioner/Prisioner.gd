@@ -6,16 +6,11 @@ extends CharacterBody2D
 @export var walk_behaviour: WalkBehaviour
 @export var weapon: Weapon
 
-var _spawner: BulletSpawner
-
-func _ready() -> void:
-	_spawner = BulletSpawner.new(get_parent())
-
 func _physics_process(delta: float) -> void:
 	if walk_behaviour:
 		walk_behaviour.walk()
 	
-	weapon.tick(delta, global_position, _spawner, true)
+	weapon.tick(delta, global_position, true)
 
 func _get_aim(origin: Vector2) -> Vector2:
 	if target:

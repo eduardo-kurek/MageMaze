@@ -8,7 +8,6 @@ var _radius: float
 var _color: Color
 
 func setup(ctx: ShotContext) -> void:
-	global_position = ctx.position
 	_velocity = ctx.direction * ctx.bullet.speed
 	_damage = ctx.bullet.damage
 	_lifetime = ctx.bullet.lifetime
@@ -16,7 +15,6 @@ func setup(ctx: ShotContext) -> void:
 	_color = ctx.bullet.color
 
 func _ready() -> void:
-	# colisão criada por código (sem precisar de cena)
 	var shape := CircleShape2D.new()
 	shape.radius = _radius
 	var col := CollisionShape2D.new()

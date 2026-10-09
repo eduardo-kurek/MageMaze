@@ -1,12 +1,15 @@
 class_name BulletSpawner
-extends Node
+extends Node2D
 
-var _spawner_container: Node
-
-func _init(spawner_container: Node):
-	_spawner_container = spawner_container
+func _ready() -> void:
+	ShotBus.bullet_requested.connect(_on_bullet_requested)
 	
-func spawn(ctx: ShotContext) -> void:
+func _on_bullet_requested(ctx: ShotContext) -> void:
 	var bullet := Bullet.new()
 	bullet.setup(ctx)
-	_spawner_container.add_child(bullet)
+	add_child(bullet)
+	bullet.global_position = ctx.position
+
+func _exit_tree() -> void:
+	if ShotBus.bullet_requested.is_connected(_on_bullet_requested):
+		ShotBus.bullet_requested.disconnect(_on_bullet_requested)
