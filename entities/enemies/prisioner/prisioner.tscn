@@ -29,5 +29,5 @@ strategy = NodePath("WalkStrategy")
 
 [node name="WalkStrategy" type="Node" parent="ChaseWalkBehaviour" unique_id=1957191035]
 script = ExtResource("2_j6gqp")
-speed = 70.0
+speed = 0.0
 acceleration = 400.0

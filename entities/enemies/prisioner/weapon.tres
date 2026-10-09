@@ -3,25 +3,35 @@
 [ext_resource type="Script" uid="uid://b21hi32dggour" path="res://entities/behaviours/shoot/BulletDef.gd" id="1_5j44p"]
 [ext_resource type="Script" uid="uid://w5un0tyt7v7q" path="res://entities/behaviours/shoot/Weapon.gd" id="1_vks66"]
 [ext_resource type="Script" uid="uid://jdit1pu3kt6w" path="res://entities/behaviours/shoot/Shot.gd" id="2_qqgya"]
-[ext_resource type="Script" uid="uid://dkvq0cu3st32l" path="res://entities/behaviours/shoot/MirrorShot.gd" id="3_81uyr"]
+[ext_resource type="Script" uid="uid://cqv8lycu7p7ij" path="res://entities/behaviours/shoot/SpreadShot.gd" id="3_81uyr"]
 
 [sub_resource type="Resource" id="Resource_qqgya"]
 script = ExtResource("1_5j44p")
+speed = 150.0
+lifetime = 5.0
 color = Color(0.719551, 0.6447952, 0.36639524, 1)
 metadata/_custom_type_script = "uid://b21hi32dggour"
 
-[sub_resource type="Resource" id="Resource_81uyr"]
+[sub_resource type="Resource" id="Resource_kcjtv"]
 script = ExtResource("2_qqgya")
 metadata/_custom_type_script = "uid://jdit1pu3kt6w"
 
 [sub_resource type="Resource" id="Resource_vv16m"]
 script = ExtResource("3_81uyr")
-next = SubResource("Resource_81uyr")
-metadata/_custom_type_script = "uid://dkvq0cu3st32l"
+angle_degrees = 15.0
+count = 2
+next = SubResource("Resource_kcjtv")
+metadata/_custom_type_script = "uid://cqv8lycu7p7ij"
+
+[sub_resource type="Resource" id="Resource_aqk2v"]
+script = ExtResource("3_81uyr")
+angle_degrees = 180.0
+next = SubResource("Resource_vv16m")
+metadata/_custom_type_script = "uid://cqv8lycu7p7ij"
 
 [resource]
 script = ExtResource("1_vks66")
-pattern = SubResource("Resource_vv16m")
+pattern = SubResource("Resource_aqk2v")
 bullet = SubResource("Resource_qqgya")
-interval = 0.5
+interval = 1.5
 metadata/_custom_type_script = "uid://w5un0tyt7v7q"
