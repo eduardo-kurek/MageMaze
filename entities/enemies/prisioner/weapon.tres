@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://w5un0tyt7v7q" path="res://entities/behaviours/shoot/Weapon.gd" id="1_vks66"]
 [ext_resource type="Script" uid="uid://jdit1pu3kt6w" path="res://entities/behaviours/shoot/Shot.gd" id="2_qqgya"]
 [ext_resource type="Script" uid="uid://cqv8lycu7p7ij" path="res://entities/behaviours/shoot/SpreadShot.gd" id="3_81uyr"]
+[ext_resource type="Script" uid="uid://cmu0vkbsq2hya" path="res://entities/behaviours/shoot/RotatingShot.gd" id="4_vv16m"]
 
 [sub_resource type="Resource" id="Resource_qqgya"]
 script = ExtResource("1_5j44p")
@@ -16,22 +17,24 @@ metadata/_custom_type_script = "uid://b21hi32dggour"
 script = ExtResource("2_qqgya")
 metadata/_custom_type_script = "uid://jdit1pu3kt6w"
 
-[sub_resource type="Resource" id="Resource_vv16m"]
+[sub_resource type="Resource" id="Resource_0pkrk"]
 script = ExtResource("3_81uyr")
-angle_degrees = 15.0
-count = 2
+angle_degrees = 360.0
+count = 5
+distribution = 1
 next = SubResource("Resource_kcjtv")
 metadata/_custom_type_script = "uid://cqv8lycu7p7ij"
 
-[sub_resource type="Resource" id="Resource_aqk2v"]
-script = ExtResource("3_81uyr")
-angle_degrees = 180.0
-next = SubResource("Resource_vv16m")
-metadata/_custom_type_script = "uid://cqv8lycu7p7ij"
+[sub_resource type="Resource" id="Resource_xci5x"]
+script = ExtResource("4_vv16m")
+step_degrees = 5.0
+reset_after_shots = 10
+next = SubResource("Resource_0pkrk")
+metadata/_custom_type_script = "uid://cmu0vkbsq2hya"
 
 [resource]
 script = ExtResource("1_vks66")
-pattern = SubResource("Resource_aqk2v")
+pattern = SubResource("Resource_xci5x")
 bullet = SubResource("Resource_qqgya")
-interval = 1.5
+interval = 0.1
 metadata/_custom_type_script = "uid://w5un0tyt7v7q"
