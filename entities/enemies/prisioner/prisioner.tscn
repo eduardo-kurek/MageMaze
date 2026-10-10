@@ -1,15 +1,48 @@
 [gd_scene format=3 uid="uid://bv8pxj5jy0g7o"]
 
 [ext_resource type="Script" uid="uid://bekfbgafbalfp" path="res://entities/enemies/prisioner/Prisioner.gd" id="1_bl8vm"]
-[ext_resource type="Resource" uid="uid://mbtv374q1xfk" path="res://entities/enemies/prisioner/weapon.tres" id="2_0pkrk"]
 [ext_resource type="Script" uid="uid://begc32x5dqkn1" path="res://entities/behaviours/walk/RandomWalk.gd" id="2_d4spm"]
 [ext_resource type="Texture2D" uid="uid://cvb4xx7o3vubo" path="res://entities/player/player.png" id="2_xlfdw"]
+[ext_resource type="Script" uid="uid://b21hi32dggour" path="res://entities/behaviours/shoot/BulletDef.gd" id="3_bullet"]
+[ext_resource type="Script" uid="uid://q8ev62d6ycnx" path="res://entities/behaviours/shoot/ShotEmiter.gd" id="4_emitter"]
+[ext_resource type="Script" uid="uid://c0nrvxs6gbw6m" path="res://entities/behaviours/shoot/ParallelShoot.gd" id="5_parallel"]
+[ext_resource type="Script" uid="uid://cqv8lycu7p7ij" path="res://entities/behaviours/shoot/SpreadShot.gd" id="6_spread"]
+[ext_resource type="Script" uid="uid://cmu0vkbsq2hya" path="res://entities/behaviours/shoot/RotatingShot.gd" id="7_rotating"]
 
 [sub_resource type="Resource" id="Resource_aqk2v"]
 script = ExtResource("2_d4spm")
 speed = 2.0
 change_interval = 0.2
 metadata/_custom_type_script = "uid://begc32x5dqkn1"
+
+[sub_resource type="Resource" id="Resource_0pkrk"]
+script = ExtResource("3_bullet")
+metadata/_custom_type_script = "uid://b21hi32dggour"
+
+[sub_resource type="Resource" id="Resource_tucn0"]
+script = ExtResource("5_parallel")
+count = 2
+metadata/_custom_type_script = "uid://c0nrvxs6gbw6m"
+
+[sub_resource type="Resource" id="Resource_dg8kv"]
+script = ExtResource("6_spread")
+angle_degrees = 360.0
+distribution = 1
+next = SubResource("Resource_tucn0")
+metadata/_custom_type_script = "uid://cqv8lycu7p7ij"
+
+[sub_resource type="Resource" id="Resource_umpxd"]
+script = ExtResource("7_rotating")
+step_degrees = 5.0
+next = SubResource("Resource_dg8kv")
+metadata/_custom_type_script = "uid://cmu0vkbsq2hya"
+
+[sub_resource type="Resource" id="Resource_d4spm"]
+script = ExtResource("4_emitter")
+pattern = SubResource("Resource_umpxd")
+bullet = SubResource("Resource_0pkrk")
+fire_rate = 120.0
+metadata/_custom_type_script = "uid://q8ev62d6ycnx"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlf01"]
 
@@ -19,7 +52,7 @@ motion_mode = 1
 script = ExtResource("1_bl8vm")
 shots_per_second = null
 walk = SubResource("Resource_aqk2v")
-weapon = ExtResource("2_0pkrk")
+shot_emitters = Array[ExtResource("4_emitter")]([SubResource("Resource_d4spm")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=56049797]
 shape = SubResource("RectangleShape2D_mlf01")
