@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b21hi32dggour" path="res://entities/behaviours/shoot/BulletDef.gd" id="3_bullet"]
 [ext_resource type="Script" uid="uid://bjdjmnolpac08" path="res://entities/behaviours/state/ShotStateMachine.gd" id="3_n1yp8"]
 [ext_resource type="Script" uid="uid://bhwjpftt6b33b" path="res://entities/behaviours/state/ShotState.gd" id="4_5jnem"]
-[ext_resource type="Script" uid="uid://q8ev62d6ycnx" path="res://entities/behaviours/shoot/ShotEmiter.gd" id="4_emitter"]
+[ext_resource type="Script" uid="uid://q8ev62d6ycnx" path="res://entities/behaviours/shoot/Weapon.gd" id="4_weapon"]
 [ext_resource type="Script" uid="uid://bhjt2ba07oytb" path="res://entities/behaviours/state/ShotStateTransition.gd" id="6_3sxs5"]
 [ext_resource type="Script" uid="uid://cqv8lycu7p7ij" path="res://entities/behaviours/shoot/SpreadShot.gd" id="6_spread"]
 [ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://entities/behaviours/state/TimerCondition.gd" id="7_5jnem"]
@@ -43,7 +43,7 @@ script = ExtResource("6_spread")
 metadata/_custom_type_script = "uid://cqv8lycu7p7ij"
 
 [sub_resource type="Resource" id="Resource_24inu"]
-script = ExtResource("4_emitter")
+script = ExtResource("4_weapon")
 pattern = SubResource("Resource_6ut85")
 bullet = SubResource("Resource_rsitr")
 fire_rate = 120.0
@@ -63,7 +63,7 @@ metadata/_custom_type_script = "uid://bhjt2ba07oytb"
 [sub_resource type="Resource" id="Resource_0pkrk"]
 script = ExtResource("4_5jnem")
 id = &"shoot"
-emitters = Array[ExtResource("4_emitter")]([SubResource("Resource_24inu")])
+weapons = Array[ExtResource("4_weapon")]([SubResource("Resource_24inu")])
 transitions = Array[ExtResource("6_3sxs5")]([SubResource("Resource_6gwcs")])
 metadata/_custom_type_script = "uid://bhwjpftt6b33b"
 

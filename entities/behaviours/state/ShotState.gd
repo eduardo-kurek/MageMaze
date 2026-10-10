@@ -2,12 +2,12 @@ class_name ShotState
 extends Resource
 
 @export var id: StringName
-@export var emitters: Array[ShotEmitter] = []
+@export var weapons: Array[Weapon] = []
 @export var transitions: Array[ShotStateTransition] = []
 
 func enter() -> void:
 	pass
 
 func update_physics(ctx: EntityContext) -> void:
-	for e in emitters:
-		e.tick(ctx.delta, ctx.position)
+	for weapon in weapons:
+		weapon.tick(ctx.delta, ctx.position)

@@ -1,4 +1,4 @@
-class_name ShotEmitter
+class_name Weapon
 extends Resource
 
 @export var pattern: ShotBehaviour
