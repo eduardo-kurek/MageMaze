@@ -10,11 +10,15 @@ enum Distribution {
 @export_range(1, 50, 1) var count: int = 3
 @export var distribution: Distribution = Distribution.BETWEEN
 
-func fire(ctx: ShotContext) -> void:
-	for offset in _compute_offsets():
-		var shot := ctx.copy()
-		shot.direction = ctx.direction.rotated(offset)
-		next.fire(shot)
+func process(ctx: ShotContext) -> Array[ShotContext]:
+	var shots: Array[ShotContext] = []
+	var offsets := _compute_offsets()
+	for shot in next.process(ctx):
+		for offset in offsets:
+			var spread_shot := shot.copy()
+			spread_shot.direction = shot.direction.rotated(offset)
+			shots.append(spread_shot)
+	return shots
 
 func _compute_offsets() -> Array[float]:
 	var offsets: Array[float] = []

@@ -4,11 +4,13 @@ extends ShotBehaviour
 @export_range(1, 1, 1, "or_greater") var count: int = 3
 @export var spacing: float = 16.0
 
-func fire(ctx: ShotContext) -> void:
-	var side := ctx.direction.orthogonal().normalized()
-	var start := -spacing * (count - 1) / 2.0
-
-	for i in count:
-		var shot := ctx.copy()
-		shot.position = ctx.position + side * (start + spacing * i)
-		next.fire(shot)
+func process(ctx: ShotContext) -> Array[ShotContext]:
+	var shots: Array[ShotContext] = []
+	for shot in next.process(ctx):
+		var side := shot.direction.orthogonal().normalized()
+		var start := -spacing * (count - 1) / 2.0
+		for i in count:
+			var parallel_shot := shot.copy()
+			parallel_shot.position += side * (start + spacing * i)
+			shots.append(parallel_shot)
+	return shots

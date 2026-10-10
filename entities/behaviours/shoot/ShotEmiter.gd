@@ -15,4 +15,6 @@ func tick(delta: float, origin: Vector2, direction: Vector2) -> void:
 		return
 	
 	_cooldown = 10.0 / fire_rate
-	pattern.fire(ShotContext.new(origin, direction, bullet))
+	var ctx := ShotContext.new(origin, direction, bullet)
+	for shot in pattern.process(ctx):
+		ShotBus.request_bullet(shot)

@@ -3,5 +3,5 @@ extends IShot
 
 @export var next: IShot
 
-func fire(ctx: ShotContext) -> void:
-	next.fire(ctx)
+func process(ctx: ShotContext) -> Array[ShotContext]:
+	return next.process(ctx)

@@ -6,8 +6,10 @@ extends ShotBehaviour
 
 var _position: int = 0
 
-func fire(ctx: ShotContext) -> void:
+func process(ctx: ShotContext) -> Array[ShotContext]:
 	var cycle := fire_count + skip_count
+	var shots: Array[ShotContext] = []
 	if _position < fire_count:
-		next.fire(ctx)
+		shots = next.process(ctx)
 	_position = (_position + 1) % cycle
+	return shots

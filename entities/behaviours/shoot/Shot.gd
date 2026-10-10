@@ -1,5 +1,5 @@
 class_name Shot
 extends IShot
 
-func fire(ctx: ShotContext) -> void:
-	ShotBus.request_bullet(ctx)
+func process(ctx: ShotContext) -> Array[ShotContext]:
+	return [ctx]

@@ -7,16 +7,17 @@ extends ShotBehaviour
 var _angle_degrees: float = 0.0
 var _shots_fired: int = 0
 
-func fire(ctx: ShotContext) -> void:
-	var shot := ctx.copy()
-	shot.direction = ctx.direction.rotated(deg_to_rad(_angle_degrees))
-	next.fire(shot)
+func process(ctx: ShotContext) -> Array[ShotContext]:
+	var shots := next.process(ctx)
+	for shot in shots:
+		shot.direction = shot.direction.rotated(deg_to_rad(_angle_degrees))
 	_shots_fired += 1
 
 	if reset_after_shots > 0 and _shots_fired >= reset_after_shots:
 		reset()
 	else:
 		_angle_degrees = fposmod(_angle_degrees + step_degrees, 360.0)
+	return shots
 
 func reset() -> void:
 	_angle_degrees = 0.0
