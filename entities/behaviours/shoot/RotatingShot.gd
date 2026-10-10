@@ -2,7 +2,7 @@ class_name RotatingShot
 extends ShotBehaviour
 
 @export_range(-360.0, 360.0, 0.1) var step_degrees: float = 0.0
-@export_range(0, 1000, 1) var reset_after_shots: int = 0
+@export_range(0, 10, 1, "or_greater") var reset_after_shots: int = 0 # Reset the state when this amount of shots is fired
 
 var _angle_degrees: float = 0.0
 var _shots_fired: int = 0

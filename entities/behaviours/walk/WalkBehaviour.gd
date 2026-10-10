@@ -1,12 +1,7 @@
 class_name WalkBehaviour
-extends Node
+extends IWalk
 
-@export var strategy: WalkStrategy
+@export var next: IWalk
 
-var actor: CharacterBody2D
-
-func _ready() -> void:
-	actor = owner as CharacterBody2D
-
-func walk() -> void:
-	push_error("%s must implement walk" % name)
+func get_velocity(ctx: WalkContext) -> Vector2:
+	return next.get_velocity(ctx)
