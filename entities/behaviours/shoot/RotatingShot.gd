@@ -9,8 +9,10 @@ var _shots_fired: int = 0
 
 func process(ctx: ShotContext) -> Array[ShotContext]:
 	var shots := super.process(ctx)
+	var angle := deg_to_rad(_angle_degrees)
 	for shot in shots:
-		shot.direction = shot.direction.rotated(deg_to_rad(_angle_degrees))
+		shot.position = ctx.position + (shot.position - ctx.position).rotated(angle)
+		shot.direction = shot.direction.rotated(angle)
 	_shots_fired += 1
 
 	if reset_after_shots > 0 and _shots_fired >= reset_after_shots:

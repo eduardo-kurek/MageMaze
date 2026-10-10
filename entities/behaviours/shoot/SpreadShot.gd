@@ -16,6 +16,7 @@ func process(ctx: ShotContext) -> Array[ShotContext]:
 	for shot in super.process(ctx):
 		for offset in offsets:
 			var spread_shot := shot.copy()
+			spread_shot.position = ctx.position + (shot.position - ctx.position).rotated(offset)
 			spread_shot.direction = shot.direction.rotated(offset)
 			shots.append(spread_shot)
 	return shots
