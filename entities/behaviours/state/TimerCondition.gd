@@ -1,7 +1,7 @@
 class_name TimerCondition
-extends ICondition
+extends StateCondition
 
 @export var seconds: float = 1.0
 
-func evaluate(ctx: EntityContext) -> bool:
+func evaluate(ctx: StateContext) -> bool:
 	return ctx.time_in_state >= seconds

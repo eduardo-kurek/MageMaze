@@ -1,0 +1,6 @@
+class_name StateContext
+extends RefCounted
+
+var actor: Node
+var delta: float = 0.0
+var time_in_state: float = 0.0
