@@ -1,4 +1,4 @@
-class_name StateMachineState
+class_name State
 extends Resource
 
 @export var id: StringName

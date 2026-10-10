@@ -4,11 +4,11 @@ extends Node
 signal state_changed(previous: StringName, current: StringName)
 
 @export var initial_state: StringName
-@export var states: Array[StateMachineState] = []
+@export var states: Array[State] = []
 
-var _runtime_states: Array[StateMachineState] = []
+var _runtime_states: Array[State] = []
 var _states_by_id: Dictionary = {}
-var _current: StateMachineState
+var _current: State
 var _ctx := StateContext.new()
 
 func _ready() -> void:

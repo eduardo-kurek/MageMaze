@@ -1,4 +1,4 @@
-class_name WeaponStateAction
+class_name WeaponAction
 extends StateAction
 
 @export var weapons: Array[Weapon] = []
