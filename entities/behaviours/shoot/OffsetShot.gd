@@ -4,7 +4,7 @@ extends ShotBehaviour
 @export var distance: float = 5.0
 
 func process(ctx: ShotContext) -> Array[ShotContext]:
-	var shots := next.process(ctx)
+	var shots := super.process(ctx)
 	for shot in shots:
 		shot.position += shot.direction * distance
 	return shots

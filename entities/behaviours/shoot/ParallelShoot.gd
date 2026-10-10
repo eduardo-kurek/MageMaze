@@ -6,7 +6,7 @@ extends ShotBehaviour
 
 func process(ctx: ShotContext) -> Array[ShotContext]:
 	var shots: Array[ShotContext] = []
-	for shot in next.process(ctx):
+	for shot in super.process(ctx):
 		var side := shot.direction.orthogonal().normalized()
 		var start := -spacing * (count - 1) / 2.0
 		for i in count:

@@ -8,7 +8,7 @@ var _angle_degrees: float = 0.0
 var _shots_fired: int = 0
 
 func process(ctx: ShotContext) -> Array[ShotContext]:
-	var shots := next.process(ctx)
+	var shots := super.process(ctx)
 	for shot in shots:
 		shot.direction = shot.direction.rotated(deg_to_rad(_angle_degrees))
 	_shots_fired += 1

@@ -13,7 +13,7 @@ enum Distribution {
 func process(ctx: ShotContext) -> Array[ShotContext]:
 	var shots: Array[ShotContext] = []
 	var offsets := _compute_offsets()
-	for shot in next.process(ctx):
+	for shot in super.process(ctx):
 		for offset in offsets:
 			var spread_shot := shot.copy()
 			spread_shot.direction = shot.direction.rotated(offset)

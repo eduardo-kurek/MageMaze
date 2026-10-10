@@ -10,6 +10,6 @@ func process(ctx: ShotContext) -> Array[ShotContext]:
 	var cycle := fire_count + skip_count
 	var shots: Array[ShotContext] = []
 	if _position < fire_count:
-		shots = next.process(ctx)
+		shots = super.process(ctx)
 	_position = (_position + 1) % cycle
 	return shots

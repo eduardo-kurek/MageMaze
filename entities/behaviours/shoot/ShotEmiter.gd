@@ -1,7 +1,7 @@
 class_name ShotEmitter
 extends Resource
 
-@export var pattern: IShot
+@export var pattern: ShotBehaviour
 @export var bullet: BulletDef
 @export_range(1, 1, 1, "or_greater") var fire_rate: float # 10 = 1 shot per second
 @export var initial_delay: float
