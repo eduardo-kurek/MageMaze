@@ -1,4 +1,4 @@
-class_name StateMachineTransition
+class_name StateTransition
 extends Resource
 
 @export var condition: StateCondition

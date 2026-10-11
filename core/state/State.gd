@@ -3,7 +3,7 @@ extends Resource
 
 @export var id: StringName
 @export var actions: Array[StateAction] = []
-@export var transitions: Array[StateMachineTransition] = []
+@export var transitions: Array[StateTransition] = []
 
 func enter(ctx: StateContext) -> void:
 	for action in actions:

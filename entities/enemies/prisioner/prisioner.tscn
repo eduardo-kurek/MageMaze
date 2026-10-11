@@ -7,11 +7,11 @@
 [ext_resource type="Script" uid="uid://c54ujyo7mwi7f" path="res://core/state/StateMachine.gd" id="3_n1yp8"]
 [ext_resource type="Script" uid="uid://ch3munoyympvj" path="res://core/state/State.gd" id="4_5jnem"]
 [ext_resource type="Script" uid="uid://q8ev62d6ycnx" path="res://entities/behaviours/shoot/Weapon.gd" id="4_weapon"]
-[ext_resource type="Script" uid="uid://ehhslnrkele0" path="res://core/state/StateMachineTransition.gd" id="6_3sxs5"]
+[ext_resource type="Script" uid="uid://ehhslnrkele0" path="res://core/state/StateTransition.gd" id="6_3sxs5"]
 [ext_resource type="Script" uid="uid://cqv8lycu7p7ij" path="res://entities/behaviours/shoot/SpreadShot.gd" id="6_spread"]
-[ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://core/state/TimerCondition.gd" id="7_5jnem"]
+[ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://core/state/conditions/TimerCondition.gd" id="7_5jnem"]
 [ext_resource type="Script" uid="uid://dblof0es740ca" path="res://core/state/StateAction.gd" id="8_state_action"]
-[ext_resource type="Script" uid="uid://bv11fre7nwmac" path="res://core/state/WeaponAction.gd" id="8_weapon_action"]
+[ext_resource type="Script" uid="uid://bv11fre7nwmac" path="res://core/state/actions/WeaponAction.gd" id="8_weapon_action"]
 
 [sub_resource type="Resource" id="Resource_aqk2v"]
 script = ExtResource("2_d4spm")
