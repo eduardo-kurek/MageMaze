@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cadihsa6qdpbj" path="res://core/common/InputDirection.gd" id="5_bectd"]
 [ext_resource type="Script" uid="uid://ds5aggrivb5eg" path="res://core/state/actions/MoveAction.gd" id="6_wvtmh"]
 [ext_resource type="Script" uid="uid://ehhslnrkele0" path="res://core/state/StateTransition.gd" id="7_7thud"]
+[ext_resource type="Script" uid="uid://ctoa6d7cvygfe" path="res://core/controllers/MoveController.gd" id="8_26q78"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
 
@@ -95,3 +96,8 @@ frame_progress = 0.5211623
 script = ExtResource("2_abrql")
 states = Array[ExtResource("3_qiwj3")]([SubResource("Resource_sglur")])
 metadata/_custom_type_script = "uid://c54ujyo7mwi7f"
+
+[node name="MoveController" type="Node" parent="." unique_id=82242989 node_paths=PackedStringArray("body")]
+script = ExtResource("8_26q78")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://ctoa6d7cvygfe"
