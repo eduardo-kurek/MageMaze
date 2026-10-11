@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://ddlm2ehewsntt"]
 
-[ext_resource type="Script" uid="uid://ckttah2qd5wuy" path="res://entities/player/Player.gd" id="1_abrql"]
-[ext_resource type="Script" uid="uid://wj7begt247st" path="res://entities/behaviours/walk/InputWalk.gd" id="2_bls4j"]
+[ext_resource type="Script" uid="uid://c54ujyo7mwi7f" path="res://core/state/StateMachine.gd" id="2_abrql"]
 [ext_resource type="Texture2D" uid="uid://cvb4xx7o3vubo" path="res://entities/player/player.png" id="2_rkbax"]
-
-[sub_resource type="Resource" id="Resource_8fjmc"]
-script = ExtResource("2_bls4j")
-speed = 150.0
-metadata/_custom_type_script = "uid://wj7begt247st"
+[ext_resource type="Script" uid="uid://ch3munoyympvj" path="res://core/state/State.gd" id="3_qiwj3"]
+[ext_resource type="Script" uid="uid://dblof0es740ca" path="res://core/state/StateAction.gd" id="4_26q78"]
+[ext_resource type="Script" uid="uid://cadihsa6qdpbj" path="res://core/common/InputDirection.gd" id="5_bectd"]
+[ext_resource type="Script" uid="uid://ds5aggrivb5eg" path="res://core/state/actions/MoveAction.gd" id="6_wvtmh"]
+[ext_resource type="Script" uid="uid://ehhslnrkele0" path="res://core/state/StateTransition.gd" id="7_7thud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
 
@@ -62,11 +61,24 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="Resource" id="Resource_26q78"]
+script = ExtResource("5_bectd")
+metadata/_custom_type_script = "uid://cadihsa6qdpbj"
+
+[sub_resource type="Resource" id="Resource_fkugw"]
+script = ExtResource("6_wvtmh")
+direction = SubResource("Resource_26q78")
+metadata/_custom_type_script = "uid://ds5aggrivb5eg"
+
+[sub_resource type="Resource" id="Resource_sglur"]
+script = ExtResource("3_qiwj3")
+id = &"playing"
+actions = Array[ExtResource("4_26q78")]([SubResource("Resource_fkugw")])
+metadata/_custom_type_script = "uid://ch3munoyympvj"
+
 [node name="Player" type="CharacterBody2D" unique_id=1005058334 groups=["enemy_target"]]
 collision_layer = 2
 motion_mode = 1
-script = ExtResource("1_abrql")
-walk = SubResource("Resource_8fjmc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2088231789]
 shape = SubResource("RectangleShape2D_rkbax")
@@ -78,3 +90,8 @@ sprite_frames = SubResource("SpriteFrames_rkbax")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.5211623
+
+[node name="StateMachine" type="Node" parent="." unique_id=2102431705]
+script = ExtResource("2_abrql")
+states = Array[ExtResource("3_qiwj3")]([SubResource("Resource_sglur")])
+metadata/_custom_type_script = "uid://c54ujyo7mwi7f"

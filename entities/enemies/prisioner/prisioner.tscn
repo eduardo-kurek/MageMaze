@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://bv8pxj5jy0g7o"]
 
-[ext_resource type="Script" uid="uid://bekfbgafbalfp" path="res://entities/enemies/prisioner/Entity.gd" id="1_bl8vm"]
-[ext_resource type="Script" uid="uid://begc32x5dqkn1" path="res://entities/behaviours/walk/RandomWalk.gd" id="2_d4spm"]
 [ext_resource type="Texture2D" uid="uid://cvb4xx7o3vubo" path="res://entities/player/player.png" id="2_xlfdw"]
 [ext_resource type="Script" uid="uid://b21hi32dggour" path="res://entities/behaviours/shoot/BulletDef.gd" id="3_bullet"]
 [ext_resource type="Script" uid="uid://c54ujyo7mwi7f" path="res://core/state/StateMachine.gd" id="3_n1yp8"]
@@ -12,12 +10,6 @@
 [ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://core/state/conditions/TimerCondition.gd" id="7_5jnem"]
 [ext_resource type="Script" uid="uid://dblof0es740ca" path="res://core/state/StateAction.gd" id="8_state_action"]
 [ext_resource type="Script" uid="uid://bv11fre7nwmac" path="res://core/state/actions/WeaponAction.gd" id="8_weapon_action"]
-
-[sub_resource type="Resource" id="Resource_aqk2v"]
-script = ExtResource("2_d4spm")
-speed = 2.0
-change_interval = 0.2
-metadata/_custom_type_script = "uid://begc32x5dqkn1"
 
 [sub_resource type="Resource" id="Resource_yyg28"]
 script = ExtResource("7_5jnem")
@@ -34,7 +26,6 @@ metadata/_custom_type_script = "uid://bhjt2ba07oytb"
 script = ExtResource("4_5jnem")
 id = &"idle"
 transitions = Array[ExtResource("6_3sxs5")]([SubResource("Resource_3sxs5")])
-metadata/_custom_type_script = "uid://bhwjpftt6b33b"
 
 [sub_resource type="Resource" id="Resource_rsitr"]
 script = ExtResource("3_bullet")
@@ -71,20 +62,16 @@ script = ExtResource("4_5jnem")
 id = &"shoot"
 actions = Array[ExtResource("8_state_action")]([SubResource("Resource_weapon_action")])
 transitions = Array[ExtResource("6_3sxs5")]([SubResource("Resource_6gwcs")])
-metadata/_custom_type_script = "uid://bhwjpftt6b33b"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlf01"]
 
 [node name="Prisioner" type="CharacterBody2D" unique_id=1130226890]
 collision_layer = 0
 motion_mode = 1
-script = ExtResource("1_bl8vm")
-walk = SubResource("Resource_aqk2v")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1772034799]
 process_physics_priority = 1
 script = ExtResource("3_n1yp8")
-initial_state = &"idle"
 states = Array[ExtResource("4_5jnem")]([SubResource("Resource_d4spm"), SubResource("Resource_0pkrk")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=56049797]
