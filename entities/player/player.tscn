@@ -7,7 +7,13 @@
 [ext_resource type="Script" uid="uid://cadihsa6qdpbj" path="res://core/common/InputDirection.gd" id="5_bectd"]
 [ext_resource type="Script" uid="uid://ds5aggrivb5eg" path="res://core/state/actions/MoveAction.gd" id="6_wvtmh"]
 [ext_resource type="Script" uid="uid://ehhslnrkele0" path="res://core/state/StateTransition.gd" id="7_7thud"]
+[ext_resource type="Script" uid="uid://dhrklmobo1t1" path="res://core/state/actions/StateMachineAction.gd" id="7_a1qjk"]
 [ext_resource type="Script" uid="uid://ctoa6d7cvygfe" path="res://core/controllers/MoveController.gd" id="8_26q78"]
+[ext_resource type="Script" uid="uid://c4u3kijhme7gd" path="res://core/controllers/AnimationController.gd" id="9_bectd"]
+[ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://core/state/conditions/TimerCondition.gd" id="9_j3ovn"]
+[ext_resource type="Script" uid="uid://cpne6afdjbl4f" path="res://core/state/actions/AnimationAction.gd" id="10_afbqv"]
+[ext_resource type="Script" uid="uid://7jkgba2rb85e" path="res://core/common/LocomotionAnimator.gd" id="13_j3ovn"]
+[ext_resource type="Script" uid="uid://cy5lq46huhoy4" path="res://core/common/AnimationRequest.gd" id="14_afbqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
 
@@ -18,6 +24,10 @@ region = Rect2(0, 0, 32, 33)
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1dw6"]
 atlas = ExtResource("2_rkbax")
 region = Rect2(32, 0, 32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bectd"]
+atlas = ExtResource("2_rkbax")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
 atlas = ExtResource("2_rkbax")
@@ -46,6 +56,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_bectd")
+}],
+"loop": 1,
+"name": &"shoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_yw30f")
 }, {
 "duration": 1.0,
@@ -58,7 +76,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_qjkh3")
 }],
 "loop": 1,
-"name": &"run",
+"name": &"walk",
 "speed": 7.0
 }]
 
@@ -71,11 +89,73 @@ script = ExtResource("6_wvtmh")
 direction = SubResource("Resource_26q78")
 metadata/_custom_type_script = "uid://ds5aggrivb5eg"
 
+[sub_resource type="Resource" id="Resource_j3ovn"]
+script = ExtResource("9_j3ovn")
+seconds = 2.0
+metadata/_custom_type_script = "uid://hkiqu4n01nkp"
+
+[sub_resource type="Resource" id="Resource_a1qjk"]
+script = ExtResource("7_7thud")
+condition = SubResource("Resource_j3ovn")
+target_state = &"shooting"
+metadata/_custom_type_script = "uid://ehhslnrkele0"
+
+[sub_resource type="Resource" id="Resource_7thud"]
+script = ExtResource("3_qiwj3")
+id = &"idle"
+transitions = Array[ExtResource("7_7thud")]([SubResource("Resource_a1qjk")])
+metadata/_custom_type_script = "uid://ch3munoyympvj"
+
+[sub_resource type="Resource" id="Resource_afbqv"]
+script = ExtResource("14_afbqv")
+anim = &"shoot"
+priority = 2
+metadata/_custom_type_script = "uid://cy5lq46huhoy4"
+
+[sub_resource type="Resource" id="Resource_gx6sm"]
+script = ExtResource("10_afbqv")
+anim_request = SubResource("Resource_afbqv")
+metadata/_custom_type_script = "uid://cpne6afdjbl4f"
+
+[sub_resource type="Resource" id="Resource_3wlsy"]
+script = ExtResource("9_j3ovn")
+seconds = 2.0
+metadata/_custom_type_script = "uid://hkiqu4n01nkp"
+
+[sub_resource type="Resource" id="Resource_yqrof"]
+script = ExtResource("7_7thud")
+condition = SubResource("Resource_3wlsy")
+target_state = &"idle"
+metadata/_custom_type_script = "uid://ehhslnrkele0"
+
+[sub_resource type="Resource" id="Resource_mtric"]
+script = ExtResource("3_qiwj3")
+id = &"shooting"
+actions = Array[ExtResource("4_26q78")]([SubResource("Resource_gx6sm")])
+transitions = Array[ExtResource("7_7thud")]([SubResource("Resource_yqrof")])
+metadata/_custom_type_script = "uid://ch3munoyympvj"
+
+[sub_resource type="Resource" id="Resource_wvtmh"]
+script = ExtResource("7_a1qjk")
+states = Array[ExtResource("3_qiwj3")]([SubResource("Resource_7thud"), SubResource("Resource_mtric")])
+metadata/_custom_type_script = "uid://dhrklmobo1t1"
+
 [sub_resource type="Resource" id="Resource_sglur"]
 script = ExtResource("3_qiwj3")
 id = &"playing"
-actions = Array[ExtResource("4_26q78")]([SubResource("Resource_fkugw")])
+actions = Array[ExtResource("4_26q78")]([SubResource("Resource_fkugw"), SubResource("Resource_wvtmh")])
 metadata/_custom_type_script = "uid://ch3munoyympvj"
+
+[sub_resource type="Resource" id="Resource_b2kln"]
+script = ExtResource("14_afbqv")
+anim = &"idle"
+metadata/_custom_type_script = "uid://cy5lq46huhoy4"
+
+[sub_resource type="Resource" id="Resource_we0b7"]
+script = ExtResource("14_afbqv")
+anim = &"walk"
+priority = 1
+metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
 [node name="Player" type="CharacterBody2D" unique_id=1005058334 groups=["enemy_target"]]
 collision_layer = 2
@@ -88,9 +168,8 @@ shape = SubResource("RectangleShape2D_rkbax")
 position = Vector2(-1.4305115e-06, 0)
 scale = Vector2(0.625, 0.6060606)
 sprite_frames = SubResource("SpriteFrames_rkbax")
-animation = &"idle"
+animation = &"shoot"
 autoplay = "idle"
-frame_progress = 0.5211623
 
 [node name="StateMachine" type="Node" parent="." unique_id=2102431705]
 script = ExtResource("2_abrql")
@@ -101,3 +180,14 @@ metadata/_custom_type_script = "uid://c54ujyo7mwi7f"
 script = ExtResource("8_26q78")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://ctoa6d7cvygfe"
+
+[node name="AnimationController" type="Node" parent="." unique_id=199877408 node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("9_bectd")
+animated_sprite = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://c4u3kijhme7gd"
+
+[node name="LocomotionAnimator" type="Node" parent="." unique_id=1729296050]
+script = ExtResource("13_j3ovn")
+idle = SubResource("Resource_b2kln")
+walk = SubResource("Resource_we0b7")
+metadata/_custom_type_script = "uid://7jkgba2rb85e"

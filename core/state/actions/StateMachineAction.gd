@@ -7,8 +7,7 @@ var _core: StateMachineCore
 
 func enter(ctx: StateContext) -> void:
 	_core = StateMachineCore.new(states)
-	if not _core.start(ctx.actor):
-		_core = null
+	_core.start(ctx.actor)
 
 func update_physics(ctx: StateContext) -> void:
 	if _core:
