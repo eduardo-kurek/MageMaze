@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://7jkgba2rb85e" path="res://core/animation/LocomotionAnimator.gd" id="13_j3ovn"]
 [ext_resource type="Script" uid="uid://ecsfcf3rfpon" path="res://core/direction/MouseDirection.gd" id="13_we0b7"]
 [ext_resource type="Script" uid="uid://cy5lq46huhoy4" path="res://core/animation/AnimationRequest.gd" id="14_afbqv"]
+[ext_resource type="Script" uid="uid://lobcso881687" path="res://core/direction/VelocityDirection.gd" id="15_velocity"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
 
@@ -141,10 +142,15 @@ script = ExtResource("10_3wlsy")
 weapons = Array[ExtResource("11_b2kln")]([SubResource("Resource_gx6sm")])
 metadata/_custom_type_script = "uid://bv11fre7nwmac"
 
+[sub_resource type="Resource" id="Resource_mtric"]
+script = ExtResource("13_we0b7")
+metadata/_custom_type_script = "uid://ecsfcf3rfpon"
+
 [sub_resource type="Resource" id="Resource_eyb6c"]
 script = ExtResource("14_afbqv")
 anim = &"shoot"
 priority = 2
+facing = SubResource("Resource_mtric")
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
 [sub_resource type="Resource" id="Resource_221hk"]
@@ -164,7 +170,7 @@ condition = SubResource("Resource_qpopc")
 target_state = &"idle"
 metadata/_custom_type_script = "uid://ehhslnrkele0"
 
-[sub_resource type="Resource" id="Resource_mtric"]
+[sub_resource type="Resource" id="Resource_t1t22"]
 script = ExtResource("3_qiwj3")
 id = &"shooting"
 actions = Array[ExtResource("4_26q78")]([SubResource("Resource_afbqv"), SubResource("Resource_221hk")])
@@ -173,7 +179,7 @@ metadata/_custom_type_script = "uid://ch3munoyympvj"
 
 [sub_resource type="Resource" id="Resource_wvtmh"]
 script = ExtResource("7_a1qjk")
-states = Array[ExtResource("3_qiwj3")]([SubResource("Resource_7thud"), SubResource("Resource_mtric")])
+states = Array[ExtResource("3_qiwj3")]([SubResource("Resource_7thud"), SubResource("Resource_t1t22")])
 metadata/_custom_type_script = "uid://dhrklmobo1t1"
 
 [sub_resource type="Resource" id="Resource_sglur"]
@@ -182,15 +188,20 @@ id = &"playing"
 actions = Array[ExtResource("4_26q78")]([SubResource("Resource_fkugw"), SubResource("Resource_wvtmh")])
 metadata/_custom_type_script = "uid://ch3munoyympvj"
 
+[sub_resource type="Resource" id="Resource_velocity"]
+script = ExtResource("15_velocity")
+
 [sub_resource type="Resource" id="Resource_50fht"]
 script = ExtResource("14_afbqv")
 anim = &"idle"
+facing = SubResource("Resource_velocity")
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
 [sub_resource type="Resource" id="Resource_wuv6x"]
 script = ExtResource("14_afbqv")
 anim = &"walk"
 priority = 1
+facing = SubResource("Resource_velocity")
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
 [node name="Player" type="CharacterBody2D" unique_id=1005058334 groups=["enemy_target"]]

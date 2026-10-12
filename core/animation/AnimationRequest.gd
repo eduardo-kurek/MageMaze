@@ -3,4 +3,4 @@ extends Resource
 
 @export var anim: StringName
 @export var priority: int
-@export var facing: Vector2
+@export var facing: DirectionSource

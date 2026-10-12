@@ -4,7 +4,6 @@ extends Node
 @export var idle: AnimationRequest
 @export var walk: AnimationRequest
 
-var _idle_handle: AnimationHandle
 var _walk_handle: AnimationHandle
 var _move: MoveController
 var _anim: AnimationController
@@ -17,9 +16,8 @@ func _ready() -> void:
 		push_error("LocomotionAnimator precisa de MoveController e AnimationController no ator")
 		return
 
-	_idle_handle = _anim.request_animation(idle)
+	_anim.request_animation(idle)
 	_move.moving_changed.connect(_on_moving_changed)
-	_move.facing_changed.connect(_on_facing_changed)
 
 func _on_moving_changed(is_moving: bool) -> void:
 	if is_moving:
@@ -27,10 +25,3 @@ func _on_moving_changed(is_moving: bool) -> void:
 	else:
 		_anim.release_animation(_walk_handle)
 		_walk_handle = null
-
-func _on_facing_changed(facing: Vector2) -> void:
-	idle.facing = facing
-	walk.facing = facing
-	_anim.update_animation(_idle_handle)
-	if _move.is_moving:
-		_anim.update_animation(_walk_handle)
