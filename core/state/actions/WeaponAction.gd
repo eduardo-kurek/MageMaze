@@ -6,4 +6,4 @@ extends StateAction
 func update_physics(ctx: StateContext) -> void:
 	var actor := ctx.actor as Node2D
 	for weapon in weapons:
-		weapon.tick(ctx.delta, actor.global_position)
+		weapon.tick(ctx.delta, actor)

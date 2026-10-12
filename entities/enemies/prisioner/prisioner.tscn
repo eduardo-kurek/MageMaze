@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://core/state/conditions/TimerCondition.gd" id="7_5jnem"]
 [ext_resource type="Script" uid="uid://dblof0es740ca" path="res://core/state/StateAction.gd" id="8_state_action"]
 [ext_resource type="Script" uid="uid://bv11fre7nwmac" path="res://core/state/actions/WeaponAction.gd" id="8_weapon_action"]
+[ext_resource type="Script" uid="uid://3f7wathpgtw3" path="res://core/direction/FixedDirection.gd" id="10_rsitr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlf01"]
 
 [sub_resource type="Resource" id="Resource_yyg28"]
 script = ExtResource("7_5jnem")
@@ -31,6 +34,10 @@ transitions = Array[ExtResource("6_3sxs5")]([SubResource("Resource_3sxs5")])
 script = ExtResource("3_bullet")
 metadata/_custom_type_script = "uid://b21hi32dggour"
 
+[sub_resource type="Resource" id="Resource_np50j"]
+script = ExtResource("10_rsitr")
+metadata/_custom_type_script = "uid://3f7wathpgtw3"
+
 [sub_resource type="Resource" id="Resource_6ut85"]
 script = ExtResource("6_spread")
 metadata/_custom_type_script = "uid://cqv8lycu7p7ij"
@@ -38,6 +45,7 @@ metadata/_custom_type_script = "uid://cqv8lycu7p7ij"
 [sub_resource type="Resource" id="Resource_24inu"]
 script = ExtResource("4_weapon")
 pattern = SubResource("Resource_6ut85")
+direction_source = SubResource("Resource_np50j")
 bullet = SubResource("Resource_rsitr")
 fire_rate = 120.0
 metadata/_custom_type_script = "uid://q8ev62d6ycnx"
@@ -55,7 +63,6 @@ metadata/_custom_type_script = "uid://hkiqu4n01nkp"
 script = ExtResource("6_3sxs5")
 condition = SubResource("Resource_trfh3")
 target_state = &"idle"
-metadata/_custom_type_script = "uid://bhjt2ba07oytb"
 
 [sub_resource type="Resource" id="Resource_0pkrk"]
 script = ExtResource("4_5jnem")
@@ -63,16 +70,9 @@ id = &"shoot"
 actions = Array[ExtResource("8_state_action")]([SubResource("Resource_weapon_action")])
 transitions = Array[ExtResource("6_3sxs5")]([SubResource("Resource_6gwcs")])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlf01"]
-
 [node name="Prisioner" type="CharacterBody2D" unique_id=1130226890]
 collision_layer = 0
 motion_mode = 1
-
-[node name="StateMachine" type="Node" parent="." unique_id=1772034799]
-process_physics_priority = 1
-script = ExtResource("3_n1yp8")
-states = Array[ExtResource("4_5jnem")]([SubResource("Resource_d4spm"), SubResource("Resource_0pkrk")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=56049797]
 shape = SubResource("RectangleShape2D_mlf01")
@@ -81,3 +81,8 @@ shape = SubResource("RectangleShape2D_mlf01")
 position = Vector2(8.940697e-07, 3.5762787e-07)
 scale = Vector2(0.08928572, 0.6060606)
 texture = ExtResource("2_xlfdw")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1772034799]
+process_physics_priority = 1
+script = ExtResource("3_n1yp8")
+states = Array[ExtResource("4_5jnem")]([SubResource("Resource_d4spm"), SubResource("Resource_0pkrk")])

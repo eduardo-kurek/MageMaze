@@ -4,16 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://cvb4xx7o3vubo" path="res://entities/player/player.png" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://ch3munoyympvj" path="res://core/state/State.gd" id="3_qiwj3"]
 [ext_resource type="Script" uid="uid://dblof0es740ca" path="res://core/state/StateAction.gd" id="4_26q78"]
-[ext_resource type="Script" uid="uid://cadihsa6qdpbj" path="res://core/common/InputDirection.gd" id="5_bectd"]
+[ext_resource type="Script" uid="uid://cadihsa6qdpbj" path="res://core/direction/InputDirection.gd" id="5_bectd"]
 [ext_resource type="Script" uid="uid://ds5aggrivb5eg" path="res://core/state/actions/MoveAction.gd" id="6_wvtmh"]
 [ext_resource type="Script" uid="uid://ehhslnrkele0" path="res://core/state/StateTransition.gd" id="7_7thud"]
 [ext_resource type="Script" uid="uid://dhrklmobo1t1" path="res://core/state/actions/StateMachineAction.gd" id="7_a1qjk"]
 [ext_resource type="Script" uid="uid://ctoa6d7cvygfe" path="res://core/controllers/MoveController.gd" id="8_26q78"]
 [ext_resource type="Script" uid="uid://c4u3kijhme7gd" path="res://core/controllers/AnimationController.gd" id="9_bectd"]
-[ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://core/state/conditions/TimerCondition.gd" id="9_j3ovn"]
+[ext_resource type="Script" uid="uid://k2k2jn7naq2x" path="res://core/state/conditions/InputCondition.gd" id="9_mtric"]
+[ext_resource type="Script" uid="uid://bv11fre7nwmac" path="res://core/state/actions/WeaponAction.gd" id="10_3wlsy"]
 [ext_resource type="Script" uid="uid://cpne6afdjbl4f" path="res://core/state/actions/AnimationAction.gd" id="10_afbqv"]
-[ext_resource type="Script" uid="uid://7jkgba2rb85e" path="res://core/common/LocomotionAnimator.gd" id="13_j3ovn"]
-[ext_resource type="Script" uid="uid://cy5lq46huhoy4" path="res://core/common/AnimationRequest.gd" id="14_afbqv"]
+[ext_resource type="Script" uid="uid://q8ev62d6ycnx" path="res://entities/behaviours/shoot/Weapon.gd" id="11_b2kln"]
+[ext_resource type="Script" uid="uid://b21hi32dggour" path="res://entities/behaviours/shoot/BulletDef.gd" id="12_we0b7"]
+[ext_resource type="Script" uid="uid://cbiujmcwlh0ob" path="res://entities/behaviours/shoot/ShotBehaviour.gd" id="13_b2kln"]
+[ext_resource type="Script" uid="uid://7jkgba2rb85e" path="res://core/animation/LocomotionAnimator.gd" id="13_j3ovn"]
+[ext_resource type="Script" uid="uid://ecsfcf3rfpon" path="res://core/direction/MouseDirection.gd" id="13_we0b7"]
+[ext_resource type="Script" uid="uid://cy5lq46huhoy4" path="res://core/animation/AnimationRequest.gd" id="14_afbqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
 
@@ -89,50 +94,81 @@ script = ExtResource("6_wvtmh")
 direction = SubResource("Resource_26q78")
 metadata/_custom_type_script = "uid://ds5aggrivb5eg"
 
-[sub_resource type="Resource" id="Resource_j3ovn"]
-script = ExtResource("9_j3ovn")
-seconds = 2.0
-metadata/_custom_type_script = "uid://hkiqu4n01nkp"
+[sub_resource type="Resource" id="Resource_we0b7"]
+script = ExtResource("9_mtric")
+action = &"shot"
+input_method = 0
+metadata/_custom_type_script = "uid://k2k2jn7naq2x"
 
-[sub_resource type="Resource" id="Resource_a1qjk"]
+[sub_resource type="Resource" id="Resource_rsitr"]
 script = ExtResource("7_7thud")
-condition = SubResource("Resource_j3ovn")
+condition = SubResource("Resource_we0b7")
 target_state = &"shooting"
 metadata/_custom_type_script = "uid://ehhslnrkele0"
 
 [sub_resource type="Resource" id="Resource_7thud"]
 script = ExtResource("3_qiwj3")
 id = &"idle"
-transitions = Array[ExtResource("7_7thud")]([SubResource("Resource_a1qjk")])
+transitions = Array[ExtResource("7_7thud")]([SubResource("Resource_rsitr")])
 metadata/_custom_type_script = "uid://ch3munoyympvj"
 
+[sub_resource type="Resource" id="Resource_yqrof"]
+script = ExtResource("12_we0b7")
+speed = 400.0
+lifetime = 0.23
+radius = 3.0
+color = Color(0, 0.53168195, 0.5585438, 1)
+metadata/_custom_type_script = "uid://b21hi32dggour"
+
+[sub_resource type="Resource" id="Resource_b2kln"]
+script = ExtResource("13_we0b7")
+metadata/_custom_type_script = "uid://ecsfcf3rfpon"
+
+[sub_resource type="Resource" id="Resource_3wlsy"]
+script = ExtResource("13_b2kln")
+metadata/_custom_type_script = "uid://cbiujmcwlh0ob"
+
+[sub_resource type="Resource" id="Resource_gx6sm"]
+script = ExtResource("11_b2kln")
+pattern = SubResource("Resource_3wlsy")
+direction_source = SubResource("Resource_b2kln")
+bullet = SubResource("Resource_yqrof")
+fire_rate = 150.0
+metadata/_custom_type_script = "uid://q8ev62d6ycnx"
+
 [sub_resource type="Resource" id="Resource_afbqv"]
+script = ExtResource("10_3wlsy")
+weapons = Array[ExtResource("11_b2kln")]([SubResource("Resource_gx6sm")])
+metadata/_custom_type_script = "uid://bv11fre7nwmac"
+
+[sub_resource type="Resource" id="Resource_eyb6c"]
 script = ExtResource("14_afbqv")
 anim = &"shoot"
 priority = 2
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
-[sub_resource type="Resource" id="Resource_gx6sm"]
+[sub_resource type="Resource" id="Resource_221hk"]
 script = ExtResource("10_afbqv")
-anim_request = SubResource("Resource_afbqv")
+anim_request = SubResource("Resource_eyb6c")
 metadata/_custom_type_script = "uid://cpne6afdjbl4f"
 
-[sub_resource type="Resource" id="Resource_3wlsy"]
-script = ExtResource("9_j3ovn")
-seconds = 2.0
-metadata/_custom_type_script = "uid://hkiqu4n01nkp"
+[sub_resource type="Resource" id="Resource_qpopc"]
+script = ExtResource("9_mtric")
+action = &"shot"
+input_method = 0
+metadata/_custom_type_script = "uid://k2k2jn7naq2x"
 
-[sub_resource type="Resource" id="Resource_yqrof"]
+[sub_resource type="Resource" id="Resource_ghoj8"]
 script = ExtResource("7_7thud")
-condition = SubResource("Resource_3wlsy")
+condition = SubResource("Resource_qpopc")
 target_state = &"idle"
 metadata/_custom_type_script = "uid://ehhslnrkele0"
 
 [sub_resource type="Resource" id="Resource_mtric"]
 script = ExtResource("3_qiwj3")
 id = &"shooting"
-actions = Array[ExtResource("4_26q78")]([SubResource("Resource_gx6sm")])
-transitions = Array[ExtResource("7_7thud")]([SubResource("Resource_yqrof")])
+actions = Array[ExtResource("4_26q78")]([SubResource("Resource_afbqv"), SubResource("Resource_221hk")])
+transitions = Array[ExtResource("7_7thud")]([SubResource("Resource_ghoj8")])
 metadata/_custom_type_script = "uid://ch3munoyympvj"
 
 [sub_resource type="Resource" id="Resource_wvtmh"]
@@ -146,12 +182,12 @@ id = &"playing"
 actions = Array[ExtResource("4_26q78")]([SubResource("Resource_fkugw"), SubResource("Resource_wvtmh")])
 metadata/_custom_type_script = "uid://ch3munoyympvj"
 
-[sub_resource type="Resource" id="Resource_b2kln"]
+[sub_resource type="Resource" id="Resource_50fht"]
 script = ExtResource("14_afbqv")
 anim = &"idle"
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
-[sub_resource type="Resource" id="Resource_we0b7"]
+[sub_resource type="Resource" id="Resource_wuv6x"]
 script = ExtResource("14_afbqv")
 anim = &"walk"
 priority = 1
@@ -188,6 +224,6 @@ metadata/_custom_type_script = "uid://c4u3kijhme7gd"
 
 [node name="LocomotionAnimator" type="Node" parent="." unique_id=1729296050]
 script = ExtResource("13_j3ovn")
-idle = SubResource("Resource_b2kln")
-walk = SubResource("Resource_we0b7")
+idle = SubResource("Resource_50fht")
+walk = SubResource("Resource_wuv6x")
 metadata/_custom_type_script = "uid://7jkgba2rb85e"
