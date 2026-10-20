@@ -5,6 +5,9 @@ extends Resource
 @export var direction_source: DirectionSource
 @export var bullet: BulletDef
 @export_range(1, 1, 1, "or_greater") var fire_rate: float = 10.0 # 10 = 1 shot per second
+@export_flags_2d_physics var bullet_layer: int
+@export_flags_2d_physics var bullet_mask: int
+
 var _cooldown: float = -1.0
 
 func tick(delta: float, actor: Node2D) -> void:
@@ -14,6 +17,12 @@ func tick(delta: float, actor: Node2D) -> void:
 	
 	_cooldown = 10.0 / fire_rate
 	var shot_direction := direction_source.get_direction(actor)
-	var ctx := ShotContext.new(actor.global_position, shot_direction, bullet)
+	var ctx := ShotContext.new(
+			actor.global_position, 
+			shot_direction,
+			bullet,
+			bullet_layer,
+			bullet_mask
+		)
 	for shot in pattern.process(ctx):
 		ShotBus.request_bullet(shot)
