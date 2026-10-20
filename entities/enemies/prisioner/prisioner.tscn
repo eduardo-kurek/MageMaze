@@ -10,7 +10,9 @@
 [ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://core/state/conditions/TimerCondition.gd" id="7_5jnem"]
 [ext_resource type="Script" uid="uid://dblof0es740ca" path="res://core/state/StateAction.gd" id="8_state_action"]
 [ext_resource type="Script" uid="uid://bv11fre7nwmac" path="res://core/state/actions/WeaponAction.gd" id="8_weapon_action"]
+[ext_resource type="Texture2D" uid="uid://2nmkmbi6yq06" path="res://icon.svg" id="10_6ut85"]
 [ext_resource type="Script" uid="uid://3f7wathpgtw3" path="res://core/direction/FixedDirection.gd" id="10_rsitr"]
+[ext_resource type="Script" uid="uid://cmu0vkbsq2hya" path="res://entities/behaviours/shoot/RotatingShot.gd" id="13_24inu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlf01"]
 
@@ -23,28 +25,44 @@ metadata/_custom_type_script = "uid://hkiqu4n01nkp"
 script = ExtResource("6_3sxs5")
 condition = SubResource("Resource_yyg28")
 target_state = &"shoot"
-metadata/_custom_type_script = "uid://bhjt2ba07oytb"
 
 [sub_resource type="Resource" id="Resource_d4spm"]
 script = ExtResource("4_5jnem")
 id = &"idle"
 transitions = Array[ExtResource("6_3sxs5")]([SubResource("Resource_3sxs5")])
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mtric"]
+radius = 100.0
+
 [sub_resource type="Resource" id="Resource_rsitr"]
 script = ExtResource("3_bullet")
+texture = ExtResource("10_6ut85")
+shape = SubResource("CircleShape2D_mtric")
+scale = 0.1
+tint = Color(0.32389987, 1, 0.9281798, 1)
+speed = 150.0
 metadata/_custom_type_script = "uid://b21hi32dggour"
 
 [sub_resource type="Resource" id="Resource_np50j"]
 script = ExtResource("10_rsitr")
 metadata/_custom_type_script = "uid://3f7wathpgtw3"
 
-[sub_resource type="Resource" id="Resource_6ut85"]
+[sub_resource type="Resource" id="Resource_trfh3"]
+script = ExtResource("13_24inu")
+step_degrees = 5.0
+metadata/_custom_type_script = "uid://cmu0vkbsq2hya"
+
+[sub_resource type="Resource" id="Resource_6gwcs"]
 script = ExtResource("6_spread")
+angle_degrees = 360.0
+count = 5
+distribution = 1
+next = SubResource("Resource_trfh3")
 metadata/_custom_type_script = "uid://cqv8lycu7p7ij"
 
 [sub_resource type="Resource" id="Resource_24inu"]
 script = ExtResource("4_weapon")
-pattern = SubResource("Resource_6ut85")
+pattern = SubResource("Resource_6gwcs")
 direction_source = SubResource("Resource_np50j")
 bullet = SubResource("Resource_rsitr")
 fire_rate = 120.0
@@ -54,21 +72,10 @@ metadata/_custom_type_script = "uid://q8ev62d6ycnx"
 script = ExtResource("8_weapon_action")
 weapons = Array[ExtResource("4_weapon")]([SubResource("Resource_24inu")])
 
-[sub_resource type="Resource" id="Resource_trfh3"]
-script = ExtResource("7_5jnem")
-seconds = 5.0
-metadata/_custom_type_script = "uid://hkiqu4n01nkp"
-
-[sub_resource type="Resource" id="Resource_6gwcs"]
-script = ExtResource("6_3sxs5")
-condition = SubResource("Resource_trfh3")
-target_state = &"idle"
-
 [sub_resource type="Resource" id="Resource_0pkrk"]
 script = ExtResource("4_5jnem")
 id = &"shoot"
 actions = Array[ExtResource("8_state_action")]([SubResource("Resource_weapon_action")])
-transitions = Array[ExtResource("6_3sxs5")]([SubResource("Resource_6gwcs")])
 
 [node name="Prisioner" type="CharacterBody2D" unique_id=1130226890]
 collision_layer = 0

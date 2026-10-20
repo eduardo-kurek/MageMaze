@@ -4,23 +4,25 @@ extends Area2D
 var _velocity: Vector2
 var _damage: int
 var _lifetime: float
-var _radius: float
-var _color: Color
 
 func setup(ctx: ShotContext) -> void:
-	_velocity = ctx.direction * ctx.bullet.speed
-	_damage = ctx.bullet.damage
-	_lifetime = ctx.bullet.lifetime
-	_radius = ctx.bullet.radius
-	_color = ctx.bullet.color
+	var def := ctx.bullet
+	_velocity = ctx.direction * def.speed
+	_damage = def.damage
+	_lifetime = def.lifetime
+	rotation = ctx.direction.angle()
+	scale = Vector2.ONE * def.scale
 
-func _ready() -> void:
-	var shape := CircleShape2D.new()
-	shape.radius = _radius
+	var sprite := Sprite2D.new()
+	sprite.texture = def.texture
+	sprite.modulate = def.tint
+	add_child(sprite)
+
 	var col := CollisionShape2D.new()
-	col.shape = shape
+	col.shape = def.shape
 	add_child(col)
 
+func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _physics_process(delta: float) -> void:
@@ -29,8 +31,5 @@ func _physics_process(delta: float) -> void:
 	if _lifetime <= 0.0:
 		queue_free()
 
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, _radius, _color)
-
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(_body: Node) -> void:
 	queue_free()

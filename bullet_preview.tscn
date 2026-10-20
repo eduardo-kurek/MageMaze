@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cfawuxwrqqf6o"]
+
+[ext_resource type="Script" uid="uid://mul5mvfsu434" path="res://entities/behaviours/shoot/BulletPreview.gd" id="1_ddh3g"]
+[ext_resource type="Script" uid="uid://b21hi32dggour" path="res://entities/behaviours/shoot/BulletDef.gd" id="2_lgjbd"]
+[ext_resource type="Texture2D" uid="uid://2nmkmbi6yq06" path="res://icon.svg" id="3_lgjbd"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_lo0ex"]
+points = PackedVector2Array(40.835, -12.215, 5.085, 50.03, -39.975, -2.13, -0.58, -42.71)
+
+[sub_resource type="Resource" id="Resource_t415i"]
+script = ExtResource("2_lgjbd")
+texture = ExtResource("3_lgjbd")
+shape = SubResource("ConvexPolygonShape2D_lo0ex")
+metadata/_custom_type_script = "uid://b21hi32dggour"
+
+[node name="BulletPreview" type="Node2D" unique_id=832667533]
+script = ExtResource("1_ddh3g")
+bullet_def = SubResource("Resource_t415i")
