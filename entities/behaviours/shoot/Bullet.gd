@@ -1,14 +1,13 @@
 class_name Bullet
-extends Area2D
+extends DamageSource
 
 var _velocity: Vector2
-var _damage: int
 var _lifetime: float
 
 func setup(ctx: ShotContext) -> void:
 	var def := ctx.bullet
 	_velocity = ctx.direction * def.speed
-	_damage = def.damage
+	damage = def.damage
 	_lifetime = def.lifetime
 	rotation = ctx.direction.angle()
 	scale = Vector2.ONE * def.scale

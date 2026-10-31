@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://ddlm2ehewsntt"]
 
+[ext_resource type="Script" uid="uid://c4kh1s4uxsg54" path="res://core/components/HealthComponent.gd" id="2_221hk"]
 [ext_resource type="Script" uid="uid://c54ujyo7mwi7f" path="res://core/state/StateMachine.gd" id="2_abrql"]
 [ext_resource type="Texture2D" uid="uid://cvb4xx7o3vubo" path="res://entities/player/player.png" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://ch3munoyympvj" path="res://core/state/State.gd" id="3_qiwj3"]
@@ -21,8 +22,7 @@
 [ext_resource type="Script" uid="uid://ecsfcf3rfpon" path="res://core/direction/MouseDirection.gd" id="13_we0b7"]
 [ext_resource type="Script" uid="uid://cy5lq46huhoy4" path="res://core/animation/AnimationRequest.gd" id="14_afbqv"]
 [ext_resource type="Script" uid="uid://lobcso881687" path="res://core/direction/VelocityDirection.gd" id="15_velocity"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
+[ext_resource type="Script" uid="uid://dbmg6k3ybiwpq" path="res://core/components/HealthBar.gd" id="23_ghoj8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkbax"]
 atlas = ExtResource("2_rkbax")
@@ -87,6 +87,12 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
+size = Vector2(18, 17)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bd655"]
+radius = 9.0
+
 [sub_resource type="Resource" id="Resource_26q78"]
 script = ExtResource("5_bectd")
 metadata/_custom_type_script = "uid://cadihsa6qdpbj"
@@ -121,6 +127,7 @@ script = ExtResource("12_we0b7")
 texture = ExtResource("13_eyb6c")
 shape = SubResource("CircleShape2D_wuv6x")
 scale = 0.1
+damage = 100
 lifetime = 0.5
 metadata/_custom_type_script = "uid://b21hi32dggour"
 
@@ -138,6 +145,8 @@ pattern = SubResource("Resource_t1t22")
 direction_source = SubResource("Resource_ghoj8")
 bullet = SubResource("Resource_50fht")
 fire_rate = 100.0
+bullet_layer = 8
+bullet_mask = 513
 metadata/_custom_type_script = "uid://q8ev62d6ycnx"
 
 [sub_resource type="Resource" id="Resource_afbqv"]
@@ -207,12 +216,20 @@ priority = 1
 facing = SubResource("Resource_velocity")
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wuv6x"]
+bg_color = Color(0.099985994, 0.09998601, 0.099985965, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpopc"]
+bg_color = Color(0.16795978, 0.70996034, 0.22079867, 1)
+
+[sub_resource type="Theme" id="Theme_ghoj8"]
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+ProgressBar/styles/background = SubResource("StyleBoxFlat_wuv6x")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_qpopc")
+
 [node name="Player" type="CharacterBody2D" unique_id=1005058334 groups=["enemy_target"]]
 collision_layer = 2
 motion_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2088231789]
-shape = SubResource("RectangleShape2D_rkbax")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2080189468]
 position = Vector2(-1.4305115e-06, 0)
@@ -220,6 +237,18 @@ scale = Vector2(0.625, 0.6060606)
 sprite_frames = SubResource("SpriteFrames_rkbax")
 animation = &"shoot"
 autoplay = "idle"
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2088231789]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_rkbax")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1026510551]
+collision_layer = 4
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=850688094]
+shape = SubResource("CircleShape2D_bd655")
+debug_color = Color(0.95040816, 0.1932883, 0.2992677, 0.41960785)
 
 [node name="StateMachine" type="Node" parent="." unique_id=2102431705]
 script = ExtResource("2_abrql")
@@ -241,3 +270,20 @@ script = ExtResource("13_j3ovn")
 idle = SubResource("Resource_bwdx1")
 walk = SubResource("Resource_wuv6x")
 metadata/_custom_type_script = "uid://7jkgba2rb85e"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=562296611 node_paths=PackedStringArray("hurtbox")]
+script = ExtResource("2_221hk")
+hurtbox = NodePath("../Hurtbox")
+regen_amount = 5
+regen_interval = 0.1
+metadata/_custom_type_script = "uid://c4kh1s4uxsg54"
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1291229574 node_paths=PackedStringArray("health")]
+offset_left = -12.0
+offset_top = 12.0
+offset_right = 12.0
+offset_bottom = 15.0
+theme = SubResource("Theme_ghoj8")
+show_percentage = false
+script = ExtResource("23_ghoj8")
+health = NodePath("../HealthComponent")

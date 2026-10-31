@@ -13,8 +13,15 @@
 [ext_resource type="Texture2D" uid="uid://2nmkmbi6yq06" path="res://icon.svg" id="10_6ut85"]
 [ext_resource type="Script" uid="uid://3f7wathpgtw3" path="res://core/direction/FixedDirection.gd" id="10_rsitr"]
 [ext_resource type="Script" uid="uid://cmu0vkbsq2hya" path="res://entities/behaviours/shoot/RotatingShot.gd" id="13_24inu"]
+[ext_resource type="Script" uid="uid://c4kh1s4uxsg54" path="res://core/components/HealthComponent.gd" id="14_trfh3"]
+[ext_resource type="Script" uid="uid://cnydit51sesys" path="res://core/components/DeathComponent.gd" id="15_23x4p"]
+[ext_resource type="Script" uid="uid://cmglqnd7qe2m5" path="res://core/components/DamageIndicator.gd" id="16_np50j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlf01"]
+size = Vector2(17, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bd655"]
+size = Vector2(16, 18)
 
 [sub_resource type="Resource" id="Resource_yyg28"]
 script = ExtResource("7_5jnem")
@@ -66,8 +73,8 @@ pattern = SubResource("Resource_6gwcs")
 direction_source = SubResource("Resource_np50j")
 bullet = SubResource("Resource_rsitr")
 fire_rate = 120.0
-bullet_layer = 256
-bullet_mask = 1
+bullet_layer = 1024
+bullet_mask = 5
 metadata/_custom_type_script = "uid://q8ev62d6ycnx"
 
 [sub_resource type="Resource" id="Resource_weapon_action"]
@@ -79,12 +86,25 @@ script = ExtResource("4_5jnem")
 id = &"shoot"
 actions = Array[ExtResource("8_state_action")]([SubResource("Resource_weapon_action")])
 
+[sub_resource type="FontVariation" id="FontVariation_s3bul"]
+spacing_glyph = -1
+
 [node name="Prisioner" type="CharacterBody2D" unique_id=1130226890]
 collision_layer = 0
 motion_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=56049797]
 shape = SubResource("RectangleShape2D_mlf01")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1930848243]
+position = Vector2(-3, 6)
+collision_layer = 512
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=667984910]
+position = Vector2(3, -6)
+shape = SubResource("RectangleShape2D_bd655")
+debug_color = Color(0.875189, 0.32802927, 0.28960088, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1030976948]
 position = Vector2(8.940697e-07, 3.5762787e-07)
@@ -95,3 +115,21 @@ texture = ExtResource("2_xlfdw")
 process_physics_priority = 1
 script = ExtResource("3_n1yp8")
 states = Array[ExtResource("4_5jnem")]([SubResource("Resource_d4spm"), SubResource("Resource_0pkrk")])
+
+[node name="HealthComponent" type="Node" parent="." unique_id=715823152 node_paths=PackedStringArray("hurtbox")]
+script = ExtResource("14_trfh3")
+hurtbox = NodePath("../HurtBox")
+max_health = 1500
+metadata/_custom_type_script = "uid://c4kh1s4uxsg54"
+
+[node name="DeathComponent" type="Node" parent="." unique_id=1861225909 node_paths=PackedStringArray("health", "target")]
+script = ExtResource("15_23x4p")
+health = NodePath("../HealthComponent")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://cnydit51sesys"
+
+[node name="DamageIndicator" type="Node2D" parent="." unique_id=878892884 node_paths=PackedStringArray("health")]
+script = ExtResource("16_np50j")
+health = NodePath("../HealthComponent")
+font = SubResource("FontVariation_s3bul")
+metadata/_custom_type_script = "uid://cmglqnd7qe2m5"
