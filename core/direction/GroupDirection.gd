@@ -5,7 +5,7 @@ extends DirectionSource
 
 var target_node: Node2D
 
-func get_direction(actor: Node) -> Vector2:
+func get_direction(actor: Node, _delta: float) -> Vector2:
 	var body := actor as Node2D
 	if body == null:
 		push_error("GroupDirection precisa de um ator Node2D")

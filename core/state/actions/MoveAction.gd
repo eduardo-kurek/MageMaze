@@ -12,5 +12,5 @@ func enter(ctx: StateContext) -> void:
 		push_error("MoveAction: o ator '%s' não tem um MoveController" % ctx.actor.name)
 
 func update_physics(ctx: StateContext) -> void:
-	var velocity := direction.get_direction(ctx.actor) * speed
+	var velocity := direction.get_direction(ctx.actor, ctx.delta) * speed
 	_move_controller.move(velocity)

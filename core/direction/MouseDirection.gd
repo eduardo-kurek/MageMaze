@@ -1,7 +1,7 @@
 class_name MouseDirection
 extends DirectionSource
 
-func get_direction(actor: Node) -> Vector2:
+func get_direction(actor: Node, _delta: float) -> Vector2:
 	var body := actor as Node2D
 	if body == null:
 		push_error("MouseDirection precisa de um ator Node2D")

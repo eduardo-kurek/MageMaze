@@ -16,7 +16,7 @@ func tick(delta: float, actor: Node2D) -> void:
 		return
 	
 	_cooldown = 10.0 / fire_rate
-	var shot_direction := direction_source.get_direction(actor)
+	var shot_direction := direction_source.get_direction(actor, delta)
 	var ctx := ShotContext.new(
 			actor.global_position, 
 			shot_direction,
