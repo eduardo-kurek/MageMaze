@@ -39,7 +39,7 @@ window/vsync/vsync_mode=0
 
 [global_group]
 
-enemy_target="Alvo de inimigos"
+player=""
 
 [input]
 

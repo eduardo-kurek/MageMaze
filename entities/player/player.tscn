@@ -231,7 +231,7 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_qpopc")
 [sub_resource type="FontVariation" id="FontVariation_2rgno"]
 spacing_glyph = -1
 
-[node name="Player" type="CharacterBody2D" unique_id=1005058334 groups=["enemy_target"]]
+[node name="Player" type="CharacterBody2D" unique_id=1005058334 groups=["player"]]
 collision_layer = 2
 motion_mode = 1
 
