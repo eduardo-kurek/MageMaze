@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://cy5lq46huhoy4" path="res://core/animation/AnimationRequest.gd" id="14_afbqv"]
 [ext_resource type="Script" uid="uid://lobcso881687" path="res://core/direction/VelocityDirection.gd" id="15_velocity"]
 [ext_resource type="Script" uid="uid://dbmg6k3ybiwpq" path="res://core/components/HealthBar.gd" id="23_ghoj8"]
+[ext_resource type="Script" uid="uid://cmglqnd7qe2m5" path="res://core/components/DamageIndicator.gd" id="24_t1t22"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkbax"]
 atlas = ExtResource("2_rkbax")
@@ -227,6 +228,9 @@ ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_wuv6x")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_qpopc")
 
+[sub_resource type="FontVariation" id="FontVariation_2rgno"]
+spacing_glyph = -1
+
 [node name="Player" type="CharacterBody2D" unique_id=1005058334 groups=["enemy_target"]]
 collision_layer = 2
 motion_mode = 1
@@ -287,3 +291,9 @@ theme = SubResource("Theme_ghoj8")
 show_percentage = false
 script = ExtResource("23_ghoj8")
 health = NodePath("../HealthComponent")
+
+[node name="DamageIndicator" type="Node2D" parent="." unique_id=880125885 node_paths=PackedStringArray("health")]
+script = ExtResource("24_t1t22")
+health = NodePath("../HealthComponent")
+font = SubResource("FontVariation_2rgno")
+metadata/_custom_type_script = "uid://cmglqnd7qe2m5"
