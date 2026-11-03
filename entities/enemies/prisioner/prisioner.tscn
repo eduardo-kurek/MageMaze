@@ -45,6 +45,7 @@ metadata/_custom_type_script = "uid://cyp41n3h0mns2"
 [sub_resource type="Resource" id="Resource_yyg28"]
 script = ExtResource("6_rsitr")
 source = SubResource("Resource_rsitr")
+threshold = 250.0
 metadata/_custom_type_script = "uid://bdqsw6i6f4jwx"
 
 [sub_resource type="Resource" id="Resource_3sxs5"]
@@ -68,7 +69,7 @@ metadata/_custom_type_script = "uid://gwsx8auabiqr"
 [sub_resource type="Resource" id="Resource_s3bul"]
 script = ExtResource("14_23x4p")
 direction = SubResource("Resource_wdnap")
-speed = 30.0
+speed = 50.0
 metadata/_custom_type_script = "uid://ds5aggrivb5eg"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_np50j"]
@@ -116,7 +117,7 @@ metadata/_custom_type_script = "uid://cyp41n3h0mns2"
 [sub_resource type="Resource" id="Resource_uwhgv"]
 script = ExtResource("6_rsitr")
 source = SubResource("Resource_n2ad1")
-threshold = 120.0
+threshold = 250.0
 mode = 1
 metadata/_custom_type_script = "uid://bdqsw6i6f4jwx"
 
@@ -171,7 +172,7 @@ metadata/_custom_type_script = "uid://ctoa6d7cvygfe"
 [node name="HealthComponent" type="Node" parent="." unique_id=715823152 node_paths=PackedStringArray("hurtbox")]
 script = ExtResource("14_trfh3")
 hurtbox = NodePath("../HurtBox")
-max_health = 1500
+max_health = 600
 metadata/_custom_type_script = "uid://c4kh1s4uxsg54"
 
 [node name="DeathComponent" type="Node" parent="." unique_id=1861225909 node_paths=PackedStringArray("health", "target")]

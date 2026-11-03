@@ -297,3 +297,5 @@ script = ExtResource("24_t1t22")
 health = NodePath("../HealthComponent")
 font = SubResource("FontVariation_2rgno")
 metadata/_custom_type_script = "uid://cmglqnd7qe2m5"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=878384768]

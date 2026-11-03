@@ -14,7 +14,7 @@ extends Node2D
 @export var distance := 12
 
 const LABEL_WIDTH := 32.0
-
+const JITTER_X_OFFSET := 2.5
 
 func _ready() -> void:
 	if health == null:
@@ -26,7 +26,9 @@ func _on_damage_taken(amount: int) -> void:
 	var label := _create_label("-%d" % amount)
 	add_child(label)
 
-	var spawn_position := Vector2(-LABEL_WIDTH / 2.0, -label.size.y / 2.0 - spawn_offset)
+	var jitter_x := randfn(0, JITTER_X_OFFSET)
+	var spawn_x := -LABEL_WIDTH / 2.0 + jitter_x
+	var spawn_position := Vector2(spawn_x, -label.size.y / 2.0 - spawn_offset)
 	label.position = spawn_position
 	_animate(label, spawn_position)
 

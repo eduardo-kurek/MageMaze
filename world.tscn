@@ -33,5 +33,23 @@ tile_set = SubResource("TileSet_i3pqv")
 [node name="Player" parent="." unique_id=1005058334 instance=ExtResource("2_fj7yv")]
 position = Vector2(113, 119)
 
+[node name="Prisioner2" parent="." unique_id=1130226890 instance=ExtResource("3_tlwt5")]
+position = Vector2(678, 258)
+
 [node name="Prisioner" parent="." unique_id=356071684 instance=ExtResource("3_tlwt5")]
-position = Vector2(339, 129)
+position = Vector2(299, 103)
+
+[node name="Prisioner3" parent="." unique_id=699668642 instance=ExtResource("3_tlwt5")]
+position = Vector2(597, 61)
+
+[node name="Prisioner4" parent="." unique_id=1742405135 instance=ExtResource("3_tlwt5")]
+position = Vector2(117, 349)
+
+[node name="Prisioner5" parent="." unique_id=959516056 instance=ExtResource("3_tlwt5")]
+position = Vector2(430, 244)
+
+[node name="Prisioner6" parent="." unique_id=582277254 instance=ExtResource("3_tlwt5")]
+position = Vector2(449, 438)
+
+[node name="Prisioner7" parent="." unique_id=601157406 instance=ExtResource("3_tlwt5")]
+position = Vector2(726, 432)
