@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://ddlm2ehewsntt"]
 
+[ext_resource type="Script" uid="uid://ckttah2qd5wuy" path="res://entities/player/Player.gd" id="1_2soq1"]
 [ext_resource type="Script" uid="uid://c4kh1s4uxsg54" path="res://core/components/HealthComponent.gd" id="2_221hk"]
 [ext_resource type="Script" uid="uid://c54ujyo7mwi7f" path="res://core/state/StateMachine.gd" id="2_abrql"]
 [ext_resource type="Texture2D" uid="uid://cvb4xx7o3vubo" path="res://entities/player/player.png" id="2_rkbax"]
@@ -31,6 +32,7 @@
 [ext_resource type="Script" uid="uid://dbmg6k3ybiwpq" path="res://core/components/HealthBar.gd" id="23_ghoj8"]
 [ext_resource type="Script" uid="uid://cmglqnd7qe2m5" path="res://core/components/DamageIndicator.gd" id="24_t1t22"]
 [ext_resource type="Script" uid="uid://heped38knee4" path="res://core/components/CooldownTimer.gd" id="27_qpopc"]
+[ext_resource type="Script" uid="uid://dy55payu8qcx3" path="res://core/components/RespawnComponent.gd" id="30_vewsg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkbax"]
 atlas = ExtResource("2_rkbax")
@@ -309,6 +311,7 @@ spacing_glyph = -1
 [node name="Player" type="CharacterBody2D" unique_id=1005058334 groups=["player"]]
 collision_layer = 2
 motion_mode = 1
+script = ExtResource("1_2soq1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2080189468]
 position = Vector2(-1.4305115e-06, 0)
@@ -367,6 +370,11 @@ show_percentage = false
 script = ExtResource("23_ghoj8")
 health = NodePath("../HealthComponent")
 
+[node name="RespawnComponent" type="Node" parent="." unique_id=1846815678 node_paths=PackedStringArray("health")]
+script = ExtResource("30_vewsg")
+health = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://dy55payu8qcx3"
+
 [node name="DamageIndicator" type="Node2D" parent="." unique_id=880125885 node_paths=PackedStringArray("health")]
 script = ExtResource("24_t1t22")
 health = NodePath("../HealthComponent")
@@ -379,3 +387,4 @@ cooldown_id = &"dash"
 metadata/_custom_type_script = "uid://heped38knee4"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=878384768]
+ignore_rotation = false

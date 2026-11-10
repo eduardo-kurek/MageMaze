@@ -1,13 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
-@export var walk: IWalk
+@onready var health : HealthComponent = $HealthComponent
 
-var _walk_ctx := WalkContext.new()
-
-func _physics_process(delta: float) -> void:
-	if walk:
-		_walk_ctx.position = global_position
-		_walk_ctx.delta = delta
-		velocity = walk.get_velocity(_walk_ctx)
-		move_and_slide()
+func _ready() -> void:
+	health.connect("died", _on_died)
+	
+func _on_died() -> void:
+	get_tree().call_deferred("reload_current_scene")

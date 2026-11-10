@@ -47,6 +47,8 @@ func heal(amount: int) -> void:
 	_set_health(_current_health + effective)
 	healed.emit(effective)
 
+func revive() -> void:
+	_set_health(max_health)
 
 func _on_area_entered(other: Area2D) -> void:
 	if other is DamageSource:
