@@ -25,6 +25,3 @@ func update_physics(ctx: StateContext) -> void:
 	var t := clampf(_elapsed / duration, 0.0, 1.0)
 	var current_speed := speed * lerpf(1.0, stop_speed_ratio, t * t)
 	_move_controller.move(_dash_direction * current_speed)
-
-func exit(_ctx: StateContext) -> void:
-	_move_controller = null

@@ -22,8 +22,15 @@
 [ext_resource type="Script" uid="uid://ecsfcf3rfpon" path="res://core/direction/MouseDirection.gd" id="13_we0b7"]
 [ext_resource type="Script" uid="uid://cy5lq46huhoy4" path="res://core/animation/AnimationRequest.gd" id="14_afbqv"]
 [ext_resource type="Script" uid="uid://lobcso881687" path="res://core/direction/VelocityDirection.gd" id="15_velocity"]
+[ext_resource type="Script" uid="uid://due4wfcl32w23" path="res://core/state/StateCondition.gd" id="18_wq0jh"]
+[ext_resource type="Script" uid="uid://bumn35b0lw6ey" path="res://core/state/actions/DashAction.gd" id="18_wuv6x"]
+[ext_resource type="Script" uid="uid://da252ai8r7e01" path="res://core/state/conditions/CooldownCondition.gd" id="19_24ehl"]
+[ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://core/state/conditions/TimerCondition.gd" id="19_qpopc"]
+[ext_resource type="Script" uid="uid://c5smop71ubxeu" path="res://core/state/conditions/AndCondition.gd" id="20_gt4e4"]
+[ext_resource type="Script" uid="uid://cqqfivbaielfq" path="res://core/state/actions/StartCooldownAction.gd" id="22_bwdx1"]
 [ext_resource type="Script" uid="uid://dbmg6k3ybiwpq" path="res://core/components/HealthBar.gd" id="23_ghoj8"]
 [ext_resource type="Script" uid="uid://cmglqnd7qe2m5" path="res://core/components/DamageIndicator.gd" id="24_t1t22"]
+[ext_resource type="Script" uid="uid://heped38knee4" path="res://core/components/CooldownTimer.gd" id="27_qpopc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkbax"]
 atlas = ExtResource("2_rkbax")
@@ -93,15 +100,6 @@ size = Vector2(18, 17)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bd655"]
 radius = 9.0
-
-[sub_resource type="Resource" id="Resource_26q78"]
-script = ExtResource("5_bectd")
-metadata/_custom_type_script = "uid://cadihsa6qdpbj"
-
-[sub_resource type="Resource" id="Resource_fkugw"]
-script = ExtResource("6_wvtmh")
-direction = SubResource("Resource_26q78")
-metadata/_custom_type_script = "uid://ds5aggrivb5eg"
 
 [sub_resource type="Resource" id="Resource_we0b7"]
 script = ExtResource("9_mtric")
@@ -195,10 +193,87 @@ script = ExtResource("7_a1qjk")
 states = Array[ExtResource("3_qiwj3")]([SubResource("Resource_7thud"), SubResource("Resource_24ehl")])
 metadata/_custom_type_script = "uid://dhrklmobo1t1"
 
+[sub_resource type="Resource" id="Resource_qpopc"]
+script = ExtResource("5_bectd")
+metadata/_custom_type_script = "uid://cadihsa6qdpbj"
+
+[sub_resource type="Resource" id="Resource_wuv6x"]
+script = ExtResource("6_wvtmh")
+direction = SubResource("Resource_qpopc")
+metadata/_custom_type_script = "uid://ds5aggrivb5eg"
+
+[sub_resource type="Resource" id="Resource_np63p"]
+script = ExtResource("9_mtric")
+action = &"dash"
+input_method = 0
+metadata/_custom_type_script = "uid://k2k2jn7naq2x"
+
+[sub_resource type="Resource" id="Resource_0eo6o"]
+script = ExtResource("19_24ehl")
+cooldown_id = &"dash"
+metadata/_custom_type_script = "uid://da252ai8r7e01"
+
+[sub_resource type="Resource" id="Resource_ttr27"]
+script = ExtResource("20_gt4e4")
+conditions = Array[ExtResource("18_wq0jh")]([SubResource("Resource_np63p"), SubResource("Resource_0eo6o")])
+metadata/_custom_type_script = "uid://c5smop71ubxeu"
+
+[sub_resource type="Resource" id="Resource_7d4w7"]
+script = ExtResource("7_7thud")
+condition = SubResource("Resource_ttr27")
+target_state = &"dashing"
+metadata/_custom_type_script = "uid://ehhslnrkele0"
+
+[sub_resource type="Resource" id="Resource_x74yi"]
+script = ExtResource("3_qiwj3")
+id = &"moving"
+actions = Array[ExtResource("4_26q78")]([SubResource("Resource_wuv6x")])
+transitions = Array[ExtResource("7_7thud")]([SubResource("Resource_7d4w7")])
+metadata/_custom_type_script = "uid://ch3munoyympvj"
+
+[sub_resource type="Resource" id="Resource_v2m21"]
+script = ExtResource("13_we0b7")
+metadata/_custom_type_script = "uid://ecsfcf3rfpon"
+
+[sub_resource type="Resource" id="Resource_k40ii"]
+script = ExtResource("18_wuv6x")
+direction = SubResource("Resource_v2m21")
+speed = 500.0
+duration = 0.2
+metadata/_custom_type_script = "uid://bumn35b0lw6ey"
+
+[sub_resource type="Resource" id="Resource_13wue"]
+script = ExtResource("22_bwdx1")
+cooldown_id = &"dash"
+metadata/_custom_type_script = "uid://cqqfivbaielfq"
+
+[sub_resource type="Resource" id="Resource_8eg47"]
+script = ExtResource("19_qpopc")
+seconds = 0.2
+metadata/_custom_type_script = "uid://hkiqu4n01nkp"
+
+[sub_resource type="Resource" id="Resource_e24eq"]
+script = ExtResource("7_7thud")
+condition = SubResource("Resource_8eg47")
+target_state = &"moving"
+metadata/_custom_type_script = "uid://ehhslnrkele0"
+
+[sub_resource type="Resource" id="Resource_in47s"]
+script = ExtResource("3_qiwj3")
+id = &"dashing"
+actions = Array[ExtResource("4_26q78")]([SubResource("Resource_k40ii"), SubResource("Resource_13wue")])
+transitions = Array[ExtResource("7_7thud")]([SubResource("Resource_e24eq")])
+metadata/_custom_type_script = "uid://ch3munoyympvj"
+
+[sub_resource type="Resource" id="Resource_2soq1"]
+script = ExtResource("7_a1qjk")
+states = Array[ExtResource("3_qiwj3")]([SubResource("Resource_x74yi"), SubResource("Resource_in47s")])
+metadata/_custom_type_script = "uid://dhrklmobo1t1"
+
 [sub_resource type="Resource" id="Resource_sglur"]
 script = ExtResource("3_qiwj3")
 id = &"playing"
-actions = Array[ExtResource("4_26q78")]([SubResource("Resource_fkugw"), SubResource("Resource_wvtmh")])
+actions = Array[ExtResource("4_26q78")]([SubResource("Resource_wvtmh"), SubResource("Resource_2soq1")])
 metadata/_custom_type_script = "uid://ch3munoyympvj"
 
 [sub_resource type="Resource" id="Resource_velocity"]
@@ -210,7 +285,7 @@ anim = &"idle"
 facing = SubResource("Resource_velocity")
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
-[sub_resource type="Resource" id="Resource_wuv6x"]
+[sub_resource type="Resource" id="Resource_8q4fm"]
 script = ExtResource("14_afbqv")
 anim = &"walk"
 priority = 1
@@ -272,7 +347,7 @@ metadata/_custom_type_script = "uid://c4u3kijhme7gd"
 [node name="LocomotionAnimator" type="Node" parent="." unique_id=1729296050]
 script = ExtResource("13_j3ovn")
 idle = SubResource("Resource_bwdx1")
-walk = SubResource("Resource_wuv6x")
+walk = SubResource("Resource_8q4fm")
 metadata/_custom_type_script = "uid://7jkgba2rb85e"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=562296611 node_paths=PackedStringArray("hurtbox")]
@@ -297,5 +372,10 @@ script = ExtResource("24_t1t22")
 health = NodePath("../HealthComponent")
 font = SubResource("FontVariation_2rgno")
 metadata/_custom_type_script = "uid://cmglqnd7qe2m5"
+
+[node name="DashTimer" type="Timer" parent="." unique_id=346989582]
+script = ExtResource("27_qpopc")
+cooldown_id = &"dash"
+metadata/_custom_type_script = "uid://heped38knee4"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=878384768]
