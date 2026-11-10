@@ -31,17 +31,29 @@ func _refresh() -> void:
 		return
 
 	_update_facing(0.0)
-	_play(best.anim)
+	_play_current()
 
 func _update_facing(delta: float) -> void:
 	var actor := get_parent() as Node2D
 	if actor == null:
 		return
+	var previous_suffix := _facing_suffix(_last_facing)
 	var facing := _facing_from_requests(actor, delta)
 	if facing != Vector2.ZERO:
 		_last_facing = facing
 	if animated_sprite != null and absf(_last_facing.x) > 0.01:
 		animated_sprite.flip_h = _last_facing.x < 0.0
+	if _current_request != null and _current_request.use_facing_suffix \
+			and previous_suffix != _facing_suffix(_last_facing):
+		_play_current()
+
+func _play_current() -> void:
+	if _current_request == null:
+		return
+	var anim := _current_request.anim
+	if _current_request.use_facing_suffix:
+		anim = StringName("%s_%s" % [anim, _facing_suffix(_last_facing)])
+	_play(anim)
 
 func _facing_from_requests(actor: Node2D, delta: float) -> Vector2:
 	var found: AnimationRequest = null
@@ -60,3 +72,8 @@ func _play(anim: StringName) -> void:
 		return
 	if animated_sprite.animation != anim or not animated_sprite.is_playing():
 		animated_sprite.play(anim)
+		
+func _facing_suffix(facing: Vector2) -> String:
+	if absf(facing.x) > absf(facing.y):
+		return "right"
+	return "down" if facing.y > 0.0 else "up"

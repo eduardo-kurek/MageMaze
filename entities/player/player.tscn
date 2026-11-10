@@ -46,6 +46,10 @@ region = Rect2(32, 0, 32, 33)
 atlas = ExtResource("2_rkbax")
 region = Rect2(192, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2soq1"]
+atlas = ExtResource("13_eyb6c")
+region = Rect2(0, 0, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
 atlas = ExtResource("2_rkbax")
 region = Rect2(64, 0, 32, 33)
@@ -76,7 +80,23 @@ animations = [{
 "texture": SubResource("AtlasTexture_bectd")
 }],
 "loop": 1,
-"name": &"shoot",
+"name": &"shoot_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2soq1")
+}],
+"loop": 1,
+"name": &"shoot_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bectd")
+}],
+"loop": 1,
+"name": &"shoot_up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -164,6 +184,7 @@ script = ExtResource("14_afbqv")
 anim = &"shoot"
 priority = 2
 facing = SubResource("Resource_mtric")
+use_facing_suffix = true
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
 [sub_resource type="Resource" id="Resource_221hk"]
@@ -317,7 +338,7 @@ script = ExtResource("1_2soq1")
 position = Vector2(-1.4305115e-06, 0)
 scale = Vector2(0.625, 0.6060606)
 sprite_frames = SubResource("SpriteFrames_rkbax")
-animation = &"shoot"
+animation = &"shoot_right"
 autoplay = "idle"
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2088231789]
