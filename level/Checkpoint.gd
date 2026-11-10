@@ -16,5 +16,5 @@ func set_active() -> void:
 func set_inactive() -> void:
 	pass
 
-func _on_player_entered(body: Node2D) -> void:
+func _on_player_entered(_body: Node2D) -> void:
 	CheckpointController.set_checkpoint(self)

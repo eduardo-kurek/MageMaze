@@ -7,14 +7,14 @@
 [ext_resource type="Script" uid="uid://ch3munoyympvj" path="res://core/state/State.gd" id="3_qiwj3"]
 [ext_resource type="Script" uid="uid://dblof0es740ca" path="res://core/state/StateAction.gd" id="4_26q78"]
 [ext_resource type="Script" uid="uid://cadihsa6qdpbj" path="res://core/direction/InputDirection.gd" id="5_bectd"]
-[ext_resource type="Script" uid="uid://ds5aggrivb5eg" path="res://core/state/actions/MoveAction.gd" id="6_wvtmh"]
+[ext_resource type="Script" uid="uid://ds5aggrivb5eg" path="res://core/actions/MoveAction.gd" id="6_wvtmh"]
 [ext_resource type="Script" uid="uid://ehhslnrkele0" path="res://core/state/StateTransition.gd" id="7_7thud"]
-[ext_resource type="Script" uid="uid://dhrklmobo1t1" path="res://core/state/actions/StateMachineAction.gd" id="7_a1qjk"]
+[ext_resource type="Script" uid="uid://dhrklmobo1t1" path="res://core/actions/StateMachineAction.gd" id="7_a1qjk"]
 [ext_resource type="Script" uid="uid://ctoa6d7cvygfe" path="res://core/controllers/MoveController.gd" id="8_26q78"]
 [ext_resource type="Script" uid="uid://c4u3kijhme7gd" path="res://core/controllers/AnimationController.gd" id="9_bectd"]
-[ext_resource type="Script" uid="uid://k2k2jn7naq2x" path="res://core/state/conditions/InputCondition.gd" id="9_mtric"]
-[ext_resource type="Script" uid="uid://bv11fre7nwmac" path="res://core/state/actions/WeaponAction.gd" id="10_3wlsy"]
-[ext_resource type="Script" uid="uid://cpne6afdjbl4f" path="res://core/state/actions/AnimationAction.gd" id="10_afbqv"]
+[ext_resource type="Script" uid="uid://k2k2jn7naq2x" path="res://core/conditions/InputCondition.gd" id="9_mtric"]
+[ext_resource type="Script" uid="uid://bv11fre7nwmac" path="res://core/actions/WeaponAction.gd" id="10_3wlsy"]
+[ext_resource type="Script" uid="uid://cpne6afdjbl4f" path="res://core/actions/AnimationAction.gd" id="10_afbqv"]
 [ext_resource type="Script" uid="uid://q8ev62d6ycnx" path="res://entities/behaviours/shoot/Weapon.gd" id="11_b2kln"]
 [ext_resource type="Script" uid="uid://b21hi32dggour" path="res://entities/behaviours/shoot/BulletDef.gd" id="12_we0b7"]
 [ext_resource type="Script" uid="uid://cbiujmcwlh0ob" path="res://entities/behaviours/shoot/ShotBehaviour.gd" id="13_b2kln"]
@@ -24,11 +24,11 @@
 [ext_resource type="Script" uid="uid://cy5lq46huhoy4" path="res://core/animation/AnimationRequest.gd" id="14_afbqv"]
 [ext_resource type="Script" uid="uid://lobcso881687" path="res://core/direction/VelocityDirection.gd" id="15_velocity"]
 [ext_resource type="Script" uid="uid://due4wfcl32w23" path="res://core/state/StateCondition.gd" id="18_wq0jh"]
-[ext_resource type="Script" uid="uid://bumn35b0lw6ey" path="res://core/state/actions/DashAction.gd" id="18_wuv6x"]
-[ext_resource type="Script" uid="uid://da252ai8r7e01" path="res://core/state/conditions/CooldownCondition.gd" id="19_24ehl"]
-[ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://core/state/conditions/TimerCondition.gd" id="19_qpopc"]
-[ext_resource type="Script" uid="uid://c5smop71ubxeu" path="res://core/state/conditions/AndCondition.gd" id="20_gt4e4"]
-[ext_resource type="Script" uid="uid://cqqfivbaielfq" path="res://core/state/actions/StartCooldownAction.gd" id="22_bwdx1"]
+[ext_resource type="Script" uid="uid://bumn35b0lw6ey" path="res://core/actions/DashAction.gd" id="18_wuv6x"]
+[ext_resource type="Script" uid="uid://da252ai8r7e01" path="res://core/conditions/CooldownCondition.gd" id="19_24ehl"]
+[ext_resource type="Script" uid="uid://hkiqu4n01nkp" path="res://core/conditions/TimerCondition.gd" id="19_qpopc"]
+[ext_resource type="Script" uid="uid://c5smop71ubxeu" path="res://core/conditions/AndCondition.gd" id="20_gt4e4"]
+[ext_resource type="Script" uid="uid://cqqfivbaielfq" path="res://core/actions/StartCooldownAction.gd" id="22_bwdx1"]
 [ext_resource type="Script" uid="uid://dbmg6k3ybiwpq" path="res://core/components/HealthBar.gd" id="23_ghoj8"]
 [ext_resource type="Script" uid="uid://cmglqnd7qe2m5" path="res://core/components/DamageIndicator.gd" id="24_t1t22"]
 [ext_resource type="Script" uid="uid://heped38knee4" path="res://core/components/CooldownTimer.gd" id="27_qpopc"]
@@ -45,10 +45,6 @@ region = Rect2(32, 0, 32, 33)
 [sub_resource type="AtlasTexture" id="AtlasTexture_bectd"]
 atlas = ExtResource("2_rkbax")
 region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2soq1"]
-atlas = ExtResource("13_eyb6c")
-region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
 atlas = ExtResource("2_rkbax")
@@ -85,7 +81,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2soq1")
+"texture": SubResource("AtlasTexture_bectd")
 }],
 "loop": 1,
 "name": &"shoot_right",
