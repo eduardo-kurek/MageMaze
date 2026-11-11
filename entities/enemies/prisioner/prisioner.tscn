@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://cnydit51sesys" path="res://core/components/DeathComponent.gd" id="15_23x4p"]
 [ext_resource type="Script" uid="uid://cmglqnd7qe2m5" path="res://core/components/DamageIndicator.gd" id="16_np50j"]
 [ext_resource type="Script" uid="uid://ctoa6d7cvygfe" path="res://core/controllers/MoveController.gd" id="16_s3bul"]
+[ext_resource type="PackedScene" uid="uid://u5v73q4byba" path="res://items/AttackPowerup.tscn" id="19_wdnap"]
+[ext_resource type="Script" uid="uid://de357rf7j8qr8" path="res://core/components/LootEntry.gd" id="21_ob5uu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlf01"]
 size = Vector2(17, 18)
@@ -134,6 +136,12 @@ actions = Array[ExtResource("8_state_action")]([SubResource("Resource_s3bul"), S
 transitions = Array[ExtResource("6_3sxs5")]([SubResource("Resource_0lyjv")])
 metadata/_custom_type_script = "uid://ch3munoyympvj"
 
+[sub_resource type="Resource" id="Resource_u4wqd"]
+script = ExtResource("21_ob5uu")
+scene = ExtResource("19_wdnap")
+chance = 0.5
+metadata/_custom_type_script = "uid://de357rf7j8qr8"
+
 [sub_resource type="FontVariation" id="FontVariation_s3bul"]
 spacing_glyph = -1
 
@@ -179,6 +187,7 @@ metadata/_custom_type_script = "uid://c4kh1s4uxsg54"
 script = ExtResource("15_23x4p")
 health = NodePath("../HealthComponent")
 target = NodePath("..")
+entries = Array[ExtResource("21_ob5uu")]([SubResource("Resource_u4wqd")])
 metadata/_custom_type_script = "uid://cnydit51sesys"
 
 [node name="DamageIndicator" type="Node2D" parent="." unique_id=878892884 node_paths=PackedStringArray("health")]

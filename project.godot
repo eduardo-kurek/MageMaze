@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 
 ShotBus="*uid://c56ku523kmrd6"
 CheckpointController="*uid://cbhk4klyyrf40"
+SceneSpawner="*uid://p1w4iydaxg1i"
 
 [debug]
 
