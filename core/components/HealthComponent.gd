@@ -69,3 +69,7 @@ func _set_health(new_value: int):
 	var old_value := _current_health
 	_current_health = new_value
 	health_changed.emit(old_value, _current_health)
+	
+func set_max_health(_max_health: int):
+	max_health = _max_health
+	_current_health = maxi(_current_health, max_health)

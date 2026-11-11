@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://u5v73q4byba"]
-
-[ext_resource type="Texture2D" uid="uid://kb6t7742ssoa" path="res://icon.png" id="1_5n6ti"]
-
-[node name="AttackPowerup" type="Node2D" unique_id=394813690]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1324104310]
-scale = Vector2(0.03254761, 0.03450001)
-texture = ExtResource("1_5n6ti")

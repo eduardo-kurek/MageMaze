@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://u5v73q4byba"]
+
+[ext_resource type="Script" uid="uid://dgliucov7s5pn" path="res://items/MaxHpPowerup.gd" id="1_4junp"]
+[ext_resource type="Texture2D" uid="uid://kb6t7742ssoa" path="res://icon.png" id="1_5n6ti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjm2t"]
+size = Vector2(18, 18)
+
+[node name="AttackPowerup" type="Node2D" unique_id=394813690]
+script = ExtResource("1_4junp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1324104310]
+position = Vector2(4.7683716e-07, -2.3841858e-07)
+scale = Vector2(0.06349206, 0.08)
+texture = ExtResource("1_5n6ti")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1993249476]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=777291319]
+shape = SubResource("RectangleShape2D_pjm2t")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_player_entered"]

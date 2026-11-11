@@ -19,8 +19,8 @@
 [ext_resource type="Script" uid="uid://cnydit51sesys" path="res://core/components/DeathComponent.gd" id="15_23x4p"]
 [ext_resource type="Script" uid="uid://cmglqnd7qe2m5" path="res://core/components/DamageIndicator.gd" id="16_np50j"]
 [ext_resource type="Script" uid="uid://ctoa6d7cvygfe" path="res://core/controllers/MoveController.gd" id="16_s3bul"]
-[ext_resource type="PackedScene" uid="uid://u5v73q4byba" path="res://items/AttackPowerup.tscn" id="19_wdnap"]
-[ext_resource type="Script" uid="uid://de357rf7j8qr8" path="res://core/components/LootEntry.gd" id="21_ob5uu"]
+[ext_resource type="PackedScene" uid="uid://u5v73q4byba" path="res://items/MaxHpPowerup.tscn" id="19_wdnap"]
+[ext_resource type="Script" uid="uid://de357rf7j8qr8" path="res://primitives/LootEntry.gd" id="21_ob5uu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlf01"]
 size = Vector2(17, 18)
