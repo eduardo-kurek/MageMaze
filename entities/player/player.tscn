@@ -33,7 +33,7 @@
 [ext_resource type="Script" uid="uid://dbmg6k3ybiwpq" path="res://core/components/HealthBar.gd" id="23_ghoj8"]
 [ext_resource type="Script" uid="uid://cmglqnd7qe2m5" path="res://core/components/DamageIndicator.gd" id="24_t1t22"]
 [ext_resource type="Script" uid="uid://heped38knee4" path="res://core/components/CooldownTimer.gd" id="27_qpopc"]
-[ext_resource type="Script" uid="uid://dy55payu8qcx3" path="res://core/components/RespawnComponent.gd" id="30_vewsg"]
+[ext_resource type="Theme" uid="uid://cjpes1ut702gq" path="res://HealthBarTheme.tres" id="30_8q4fm"]
 
 [sub_resource type="Resource" id="Resource_wy7bt"]
 script = ExtResource("2_8q4fm")
@@ -319,22 +319,8 @@ priority = 1
 facing = SubResource("Resource_velocity")
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wuv6x"]
-bg_color = Color(0.099985994, 0.09998601, 0.099985965, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpopc"]
-bg_color = Color(0.16795978, 0.70996034, 0.22079867, 1)
-
-[sub_resource type="Theme" id="Theme_ghoj8"]
-ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
-ProgressBar/styles/background = SubResource("StyleBoxFlat_wuv6x")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_qpopc")
-
 [sub_resource type="FontVariation" id="FontVariation_2rgno"]
 spacing_glyph = -1
-
-[sub_resource type="LabelSettings" id="LabelSettings_pjm2t"]
-font_size = 10
 
 [node name="Player" type="CharacterBody2D" unique_id=1005058334 groups=["player"]]
 collision_layer = 2
@@ -382,27 +368,22 @@ idle = SubResource("Resource_bwdx1")
 walk = SubResource("Resource_8q4fm")
 metadata/_custom_type_script = "uid://7jkgba2rb85e"
 
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1291229574 node_paths=PackedStringArray("health")]
+offset_left = -12.0
+offset_top = 12.0
+offset_right = 12.0
+offset_bottom = 15.0
+theme = ExtResource("30_8q4fm")
+show_percentage = false
+script = ExtResource("23_ghoj8")
+health = NodePath("../HealthComponent")
+
 [node name="HealthComponent" type="Node" parent="." unique_id=562296611 node_paths=PackedStringArray("hurtbox")]
 script = ExtResource("2_221hk")
 hurtbox = NodePath("../Hurtbox")
 regen_amount = 5
 regen_interval = 0.1
 metadata/_custom_type_script = "uid://c4kh1s4uxsg54"
-
-[node name="HealthBar" type="ProgressBar" parent="." unique_id=1291229574 node_paths=PackedStringArray("health")]
-offset_left = -12.0
-offset_top = 12.0
-offset_right = 12.0
-offset_bottom = 15.0
-theme = SubResource("Theme_ghoj8")
-show_percentage = false
-script = ExtResource("23_ghoj8")
-health = NodePath("../HealthComponent")
-
-[node name="RespawnComponent" type="Node" parent="." unique_id=1846815678 node_paths=PackedStringArray("health")]
-script = ExtResource("30_vewsg")
-health = NodePath("../HealthComponent")
-metadata/_custom_type_script = "uid://dy55payu8qcx3"
 
 [node name="DamageIndicator" type="Node2D" parent="." unique_id=880125885 node_paths=PackedStringArray("health")]
 script = ExtResource("24_t1t22")
@@ -417,11 +398,3 @@ metadata/_custom_type_script = "uid://heped38knee4"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=878384768]
 ignore_rotation = false
-
-[node name="Label" type="Label" parent="." unique_id=1440837169]
-offset_left = -17.0
-offset_top = -23.0
-offset_right = 13.0
-offset_bottom = -9.0
-text = "VIDA"
-label_settings = SubResource("LabelSettings_pjm2t")

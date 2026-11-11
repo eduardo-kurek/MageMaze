@@ -4,12 +4,16 @@ extends Node
 signal damage_taken(damage: int)
 signal healed(amount: int)
 signal health_changed(old_value: int, current_health: int)
+signal max_health_changed(old_value: int, current_health: int)
 signal died
 
 @export var hurtbox: Area2D
 @export var max_health := 800
 @export var regen_amount := 0
 @export_range(0.1, 60.0, 0.1, "or_greater") var regen_interval := 1.0
+
+var current_health: int:
+	get: return _current_health
 
 var _current_health: int
 var _regen_timer := 0.0
@@ -20,8 +24,13 @@ func _ready() -> void:
 	if hurtbox == null:
 		push_error("HealthComponent sem hurtbox em '%s'" % get_parent().name)
 		return
-		
+	
 	hurtbox.area_entered.connect(_on_area_entered)
+	_init.call_deferred()
+
+func _init() -> void:
+	set_max_health(max_health)
+	_set_health(max_health)
 
 func _process(delta: float) -> void:
 	_update_regen(delta)
@@ -71,5 +80,7 @@ func _set_health(new_value: int):
 	health_changed.emit(old_value, _current_health)
 	
 func set_max_health(_max_health: int):
+	var old := max_health
 	max_health = _max_health
-	_current_health = maxi(_current_health, max_health)
+	_current_health = mini(_current_health, max_health)
+	max_health_changed.emit(old, _max_health)

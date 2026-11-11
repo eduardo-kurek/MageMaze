@@ -23,7 +23,6 @@ func decrease(amount: float) -> void:
 
 func _set_value(new_value: float) -> void:
 	var old := _value
-	print('setando stat, old: %s, new: %s' % [old, new_value])
 	_value = clampf(new_value, min_value, max_value)
 	if _value != old:
 		stat_changed.emit(old, _value)
