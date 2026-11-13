@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://fsssl0gqmmgf"]
+
+[ext_resource type="Script" uid="uid://c4kh1s4uxsg54" path="res://core/components/HealthComponent.gd" id="1_wic4g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2rgno"]
+radius = 8.0
+
+[node name="HealthComponent" type="Area2D" unique_id=685713470]
+collision_layer = 4
+collision_mask = 1024
+script = ExtResource("1_wic4g")
+metadata/_custom_type_script = "uid://c4kh1s4uxsg54"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1009320356]
+shape = SubResource("CircleShape2D_2rgno")
+debug_color = Color(0.86886793, 0.29351503, 0.5085351, 0.41960785)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
