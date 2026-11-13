@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://ddlm2ehewsntt" path="res://entities/player/player.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://bv8pxj5jy0g7o" path="res://entities/enemies/ghost/ghost.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://b5vq7j7v8gk1i" path="res://misc/Hud.tscn" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://dao512kb551rf" path="res://entities/enemies/yellow_ghost/yellow_ghost.tscn" id="6_dwbse"]
+[ext_resource type="PackedScene" uid="uid://htyp2g44qc4u" path="res://entities/enemies/grey_ghost/grey_ghost.tscn" id="6_pkg7o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwbse"]
 texture = ExtResource("2_036b0")
@@ -38,23 +40,15 @@ tile_set = SubResource("TileSet_63xie")
 [node name="Player" parent="." unique_id=1005058334 instance=ExtResource("2_fj7yv")]
 position = Vector2(115, 92)
 
-[node name="Prisioner2" parent="." unique_id=1130226890 instance=ExtResource("3_tlwt5")]
-position = Vector2(678, 258)
+[node name="YellowGhost" parent="." unique_id=1597644950 instance=ExtResource("6_dwbse")]
+position = Vector2(-227, 125)
 
-[node name="Prisioner3" parent="." unique_id=699668642 instance=ExtResource("3_tlwt5")]
-position = Vector2(597, 61)
+[node name="GreyGhost" parent="." unique_id=1906114805 instance=ExtResource("6_pkg7o")]
+position = Vector2(-31, 12)
 
-[node name="Prisioner4" parent="." unique_id=1742405135 instance=ExtResource("3_tlwt5")]
-position = Vector2(117, 349)
+[node name="Ghost" parent="." unique_id=1130226890 instance=ExtResource("3_tlwt5")]
+position = Vector2(-48, 279)
 
-[node name="Prisioner5" parent="." unique_id=959516056 instance=ExtResource("3_tlwt5")]
-position = Vector2(430, 244)
-
-[node name="Prisioner6" parent="." unique_id=582277254 instance=ExtResource("3_tlwt5")]
-position = Vector2(449, 438)
-
-[node name="Prisioner7" parent="." unique_id=601157406 instance=ExtResource("3_tlwt5")]
-position = Vector2(726, 432)
-
-[node name="Hud" parent="." unique_id=1345239212 node_paths=PackedStringArray("player") instance=ExtResource("5_036b0")]
-player = NodePath("../Player")
+[node name="Hud" parent="Ghost" unique_id=1345239212 node_paths=PackedStringArray("player") instance=ExtResource("5_036b0")]
+visible = false
+player = NodePath("../../Player")

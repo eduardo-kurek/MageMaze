@@ -11,12 +11,14 @@
 [ext_resource type="Script" uid="uid://cyp41n3h0mns2" path="res://core/distance/GroupDistance.gd" id="7_6ut85"]
 [ext_resource type="Script" uid="uid://dblof0es740ca" path="res://core/state/StateAction.gd" id="8_state_action"]
 [ext_resource type="Script" uid="uid://bv11fre7nwmac" path="res://core/actions/WeaponAction.gd" id="8_weapon_action"]
-[ext_resource type="Texture2D" uid="uid://2nmkmbi6yq06" path="res://icon.svg" id="10_6ut85"]
 [ext_resource type="Script" uid="uid://cbiujmcwlh0ob" path="res://core/shoot/behaviours/ShotBehaviour.gd" id="13_23x4p"]
 [ext_resource type="Script" uid="uid://ds5aggrivb5eg" path="res://core/actions/MoveAction.gd" id="14_23x4p"]
+[ext_resource type="Texture2D" uid="uid://cb3t86yqgsum2" path="res://core/shoot/sprites/star.png" id="14_m5x47"]
 [ext_resource type="Script" uid="uid://gwsx8auabiqr" path="res://core/direction/GroupDirection.gd" id="14_tqh6p"]
 [ext_resource type="Script" uid="uid://c4kh1s4uxsg54" path="res://core/components/HealthComponent.gd" id="14_trfh3"]
 [ext_resource type="Script" uid="uid://cnydit51sesys" path="res://core/components/DeathComponent.gd" id="15_23x4p"]
+[ext_resource type="Script" uid="uid://cqv8lycu7p7ij" path="res://core/shoot/behaviours/SpreadShot.gd" id="16_e6frh"]
+[ext_resource type="Texture2D" uid="uid://t7ehvns33ccj" path="res://core/shoot/sprites/convex.png" id="16_m5x47"]
 [ext_resource type="Script" uid="uid://cmglqnd7qe2m5" path="res://core/components/DamageIndicator.gd" id="16_np50j"]
 [ext_resource type="Script" uid="uid://ctoa6d7cvygfe" path="res://core/controllers/MoveController.gd" id="16_s3bul"]
 [ext_resource type="Script" uid="uid://cpne6afdjbl4f" path="res://core/actions/AnimationAction.gd" id="18_lexrg"]
@@ -123,7 +125,7 @@ metadata/_custom_type_script = "uid://cyp41n3h0mns2"
 [sub_resource type="Resource" id="Resource_yyg28"]
 script = ExtResource("6_rsitr")
 source = SubResource("Resource_rsitr")
-threshold = 250.0
+threshold = 175.0
 metadata/_custom_type_script = "uid://bdqsw6i6f4jwx"
 
 [sub_resource type="Resource" id="Resource_3sxs5"]
@@ -147,20 +149,20 @@ metadata/_custom_type_script = "uid://gwsx8auabiqr"
 [sub_resource type="Resource" id="Resource_s3bul"]
 script = ExtResource("14_23x4p")
 direction = SubResource("Resource_wdnap")
-speed = 50.0
+speed = 120.0
 metadata/_custom_type_script = "uid://ds5aggrivb5eg"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_np50j"]
-radius = 100.0
+radius = 12.0
 
 [sub_resource type="Resource" id="Resource_trfh3"]
 script = ExtResource("3_bullet")
-texture = ExtResource("10_6ut85")
+texture = ExtResource("14_m5x47")
 shape = SubResource("CircleShape2D_np50j")
-scale = 0.1
-speed = 200.0
-damage = 15
-lifetime = 2.5
+scale = 0.5
+tint = Color(0.8055684, 0.1724143, 0.33098996, 1)
+damage = 20
+lifetime = 1.5
 metadata/_custom_type_script = "uid://b21hi32dggour"
 
 [sub_resource type="Resource" id="Resource_6gwcs"]
@@ -177,14 +179,47 @@ script = ExtResource("4_weapon")
 pattern = SubResource("Resource_24inu")
 direction_source = SubResource("Resource_6gwcs")
 bullet = SubResource("Resource_trfh3")
-fire_rate = 100.0
+fire_rate = 40.0
+bullet_layer = 1024
+bullet_mask = 5
+metadata/_custom_type_script = "uid://q8ev62d6ycnx"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m5x47"]
+radius = 12.0
+
+[sub_resource type="Resource" id="Resource_e6frh"]
+script = ExtResource("3_bullet")
+texture = ExtResource("16_m5x47")
+shape = SubResource("CircleShape2D_m5x47")
+tint = Color(0, 0.3719341, 0.43144524, 1)
+damage = 50
+lifetime = 6.0
+metadata/_custom_type_script = "uid://b21hi32dggour"
+
+[sub_resource type="Resource" id="Resource_rs112"]
+script = ExtResource("14_tqh6p")
+group = &"player"
+metadata/_custom_type_script = "uid://gwsx8auabiqr"
+
+[sub_resource type="Resource" id="Resource_m5x47"]
+script = ExtResource("16_e6frh")
+angle_degrees = 75.0
+distribution = 1
+metadata/_custom_type_script = "uid://cqv8lycu7p7ij"
+
+[sub_resource type="Resource" id="Resource_lexrg"]
+script = ExtResource("4_weapon")
+pattern = SubResource("Resource_m5x47")
+direction_source = SubResource("Resource_rs112")
+bullet = SubResource("Resource_e6frh")
+fire_rate = 20.0
 bullet_layer = 1024
 bullet_mask = 5
 metadata/_custom_type_script = "uid://q8ev62d6ycnx"
 
 [sub_resource type="Resource" id="Resource_ob5uu"]
 script = ExtResource("8_weapon_action")
-weapons = Array[ExtResource("4_weapon")]([SubResource("Resource_6ut85")])
+weapons = Array[ExtResource("4_weapon")]([SubResource("Resource_6ut85"), SubResource("Resource_lexrg")])
 metadata/_custom_type_script = "uid://bv11fre7nwmac"
 
 [sub_resource type="Resource" id="Resource_pe8et"]
@@ -192,7 +227,7 @@ script = ExtResource("14_tqh6p")
 group = &"player"
 metadata/_custom_type_script = "uid://gwsx8auabiqr"
 
-[sub_resource type="Resource" id="Resource_lexrg"]
+[sub_resource type="Resource" id="Resource_ao07w"]
 script = ExtResource("25_m5x47")
 anim = &"shot"
 priority = 2
@@ -201,7 +236,7 @@ metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
 [sub_resource type="Resource" id="Resource_5q72j"]
 script = ExtResource("18_lexrg")
-anim_request = SubResource("Resource_lexrg")
+anim_request = SubResource("Resource_ao07w")
 metadata/_custom_type_script = "uid://cpne6afdjbl4f"
 
 [sub_resource type="Resource" id="Resource_n2ad1"]
@@ -212,7 +247,7 @@ metadata/_custom_type_script = "uid://cyp41n3h0mns2"
 [sub_resource type="Resource" id="Resource_uwhgv"]
 script = ExtResource("6_rsitr")
 source = SubResource("Resource_n2ad1")
-threshold = 250.0
+threshold = 175.0
 mode = 1
 metadata/_custom_type_script = "uid://bdqsw6i6f4jwx"
 
@@ -249,15 +284,15 @@ facing = SubResource("Resource_me1g5")
 use_facing_suffix = true
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
-[sub_resource type="Resource" id="Resource_m5x47"]
+[sub_resource type="Resource" id="Resource_pmhsv"]
 script = ExtResource("24_e6frh")
 metadata/_custom_type_script = "uid://lobcso881687"
 
-[sub_resource type="Resource" id="Resource_e6frh"]
+[sub_resource type="Resource" id="Resource_6pprr"]
 script = ExtResource("25_m5x47")
 anim = &"idle"
 priority = 1
-facing = SubResource("Resource_m5x47")
+facing = SubResource("Resource_pmhsv")
 use_facing_suffix = true
 metadata/_custom_type_script = "uid://cy5lq46huhoy4"
 
@@ -297,7 +332,7 @@ metadata/_custom_type_script = "uid://ctoa6d7cvygfe"
 [node name="HealthComponent" type="Node" parent="." unique_id=715823152 node_paths=PackedStringArray("hurtbox")]
 script = ExtResource("14_trfh3")
 hurtbox = NodePath("../HurtBox")
-max_health = 600
+max_health = 1000
 metadata/_custom_type_script = "uid://c4kh1s4uxsg54"
 
 [node name="DeathComponent" type="Node" parent="." unique_id=1861225909 node_paths=PackedStringArray("health", "target")]
@@ -321,5 +356,5 @@ metadata/_custom_type_script = "uid://c4u3kijhme7gd"
 [node name="LocomotionAnimator" type="Node" parent="." unique_id=1054927318]
 script = ExtResource("23_lexrg")
 idle = SubResource("Resource_pjm2t")
-walk = SubResource("Resource_e6frh")
+walk = SubResource("Resource_6pprr")
 metadata/_custom_type_script = "uid://7jkgba2rb85e"
