@@ -266,7 +266,6 @@ collision_layer = 0
 motion_mode = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1693290011]
-scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_pjm2t")
 animation = &"idle_down"
 autoplay = "idle_right"
