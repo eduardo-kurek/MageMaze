@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfawuxwrqqf6o"]
 
-[ext_resource type="Script" uid="uid://mul5mvfsu434" path="res://entities/behaviours/shoot/BulletPreview.gd" id="1_ddh3g"]
-[ext_resource type="Script" uid="uid://b21hi32dggour" path="res://entities/behaviours/shoot/BulletDef.gd" id="2_lgjbd"]
+[ext_resource type="Script" uid="uid://mul5mvfsu434" path="res://core/shoot/BulletPreview.gd" id="1_ddh3g"]
+[ext_resource type="Script" uid="uid://b21hi32dggour" path="res://core/shoot/BulletDef.gd" id="2_lgjbd"]
 [ext_resource type="Texture2D" uid="uid://2nmkmbi6yq06" path="res://icon.svg" id="3_lgjbd"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_lo0ex"]

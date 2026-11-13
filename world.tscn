@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bbkdt5ipcsf33"]
 
-[ext_resource type="Script" uid="uid://bkatd4bgnl8pn" path="res://entities/behaviours/shoot/BulletSpawner.gd" id="1_aqk2v"]
+[ext_resource type="Script" uid="uid://bkatd4bgnl8pn" path="res://core/shoot/BulletSpawner.gd" id="1_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://bxh3iio5ojst7" path="res://level/brick_tiles.png" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://ddlm2ehewsntt" path="res://entities/player/player.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://bv8pxj5jy0g7o" path="res://entities/enemies/prisioner/prisioner.tscn" id="3_tlwt5"]
