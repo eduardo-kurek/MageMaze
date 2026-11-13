@@ -197,10 +197,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
-size = Vector2(8, 14)
+size = Vector2(16, 23.382813)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8q4fm"]
-size = Vector2(6, 13)
+size = Vector2(13, 26)
 
 [sub_resource type="Resource" id="Resource_we0b7"]
 script = ExtResource("9_mtric")
@@ -405,15 +405,14 @@ script = ExtResource("1_2soq1")
 max_health = SubResource("Resource_wy7bt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2080189468]
-position = Vector2(-1.4305115e-06, 0)
-scale = Vector2(0.625, 0.6060606)
+scale = Vector2(1, 0.988)
 sprite_frames = SubResource("SpriteFrames_rkbax")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2088231789]
 visible = false
-position = Vector2(-1, 2)
+position = Vector2(0, 3.6914063)
 shape = SubResource("RectangleShape2D_rkbax")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1026510551]
@@ -421,7 +420,7 @@ collision_layer = 4
 collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=850688094]
-position = Vector2(-1, 2.5)
+position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_8q4fm")
 debug_color = Color(0.95040816, 0.1932883, 0.2992677, 0.41960785)
 
@@ -447,10 +446,10 @@ walk = SubResource("Resource_8q4fm")
 metadata/_custom_type_script = "uid://7jkgba2rb85e"
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1291229574 node_paths=PackedStringArray("health")]
-offset_left = -12.0
-offset_top = 12.0
-offset_right = 12.0
-offset_bottom = 15.0
+offset_left = -10.0
+offset_top = 19.0
+offset_right = 14.0
+offset_bottom = 22.0
 theme = ExtResource("30_8q4fm")
 show_percentage = false
 script = ExtResource("23_ghoj8")

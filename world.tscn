@@ -1,13 +1,15 @@
 [gd_scene format=4 uid="uid://bbkdt5ipcsf33"]
 
 [ext_resource type="Script" uid="uid://bkatd4bgnl8pn" path="res://core/shoot/BulletSpawner.gd" id="1_aqk2v"]
-[ext_resource type="Texture2D" uid="uid://bxh3iio5ojst7" path="res://level/brick_tiles.png" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://ddlm2ehewsntt" path="res://entities/player/player.tscn" id="2_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://bv8pxj5jy0g7o" path="res://entities/enemies/prisioner/prisioner.tscn" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://bv8pxj5jy0g7o" path="res://entities/enemies/ghost/ghost.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://b5vq7j7v8gk1i" path="res://misc/Hud.tscn" id="5_036b0"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aqk2v"]
+load_path = "res://.godot/imported/brick_tiles.png-cdcce8e8a08e7a03341d881ac02424d4.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj7yv"]
-texture = ExtResource("1_f3sb7")
+texture = SubResource("CompressedTexture2D_aqk2v")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0

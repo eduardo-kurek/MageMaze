@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxh3iio5ojst7"
-path="res://.godot/imported/brick_tiles.png-cdcce8e8a08e7a03341d881ac02424d4.ctex"
+uid="uid://beain82kfpilm"
+path="res://.godot/imported/ghost.png-f0383f16fdbd6b49b6f3eb50ab49dba5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/brick_tiles.png"
-dest_files=["res://.godot/imported/brick_tiles.png-cdcce8e8a08e7a03341d881ac02424d4.ctex"]
+source_file="res://entities/enemies/ghost/ghost.png"
+dest_files=["res://.godot/imported/ghost.png-f0383f16fdbd6b49b6f3eb50ab49dba5.ctex"]
 
 [params]
 
