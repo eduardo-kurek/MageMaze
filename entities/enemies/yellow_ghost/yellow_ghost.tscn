@@ -207,28 +207,10 @@ script = ExtResource("12_jdiqr")
 states = Array[ExtResource("2_s6rgc")]([SubResource("Resource_s6rgc"), SubResource("Resource_ekdpc")])
 metadata/_custom_type_script = "uid://dhrklmobo1t1"
 
-[sub_resource type="Resource" id="Resource_rsitr"]
-script = ExtResource("8_ut2wv")
-group = &"player"
-metadata/_custom_type_script = "uid://cyp41n3h0mns2"
-
-[sub_resource type="Resource" id="Resource_yyg28"]
-script = ExtResource("7_6wh70")
-source = SubResource("Resource_rsitr")
-threshold = 175.0
-metadata/_custom_type_script = "uid://bdqsw6i6f4jwx"
-
-[sub_resource type="Resource" id="Resource_3sxs5"]
-script = ExtResource("6_s8wvn")
-condition = SubResource("Resource_yyg28")
-target_state = &"attack"
-metadata/_custom_type_script = "uid://ehhslnrkele0"
-
 [sub_resource type="Resource" id="Resource_854lg"]
 script = ExtResource("2_s6rgc")
 id = &"default"
 actions = Array[ExtResource("3_ekdpc")]([SubResource("Resource_23x4p"), SubResource("Resource_mpadl")])
-transitions = Array[ExtResource("6_s8wvn")]([SubResource("Resource_3sxs5")])
 metadata/_custom_type_script = "uid://ch3munoyympvj"
 
 [sub_resource type="Resource" id="Resource_u4wqd"]
