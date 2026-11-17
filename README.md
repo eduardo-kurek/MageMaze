@@ -1,6 +1,6 @@
 # MageMaze
 
-MageMaze tem como promissa ser um jogo de bullet hell, inspirado no Realm Of The Mad God.
+MageMaze tem como premissa ser um jogo de bullet hell, inspirado no Realm Of The Mad God.
 
 ## Protótipo
 
