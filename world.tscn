@@ -153,5 +153,5 @@ position = Vector2(443, -447)
 [node name="GreyGhost9" parent="Inimigos/GreyGhosts" unique_id=1272152008 instance=ExtResource("6_pkg7o")]
 position = Vector2(424, -81)
 
-[node name="Hud" parent="Inimigos" unique_id=1787057401 node_paths=PackedStringArray("player") instance=ExtResource("5_036b0")]
-player = NodePath("../../Player")
+[node name="Hud" parent="." unique_id=1787057401 node_paths=PackedStringArray("player") instance=ExtResource("5_036b0")]
+player = NodePath("../Player")
